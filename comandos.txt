@@ -15,3 +15,15 @@ dotnet ef database update
 
 -- dropar banco
 dotnet ef database drop
+
+-- versão do npm
+npm --version
+
+-- versão do node
+npm --version
+
+-- instalar npm
+npm install -g @angular/cli
+
+-- criar projeto
+ng new UCarLink-App
