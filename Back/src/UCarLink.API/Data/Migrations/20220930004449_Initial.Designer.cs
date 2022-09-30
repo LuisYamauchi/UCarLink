@@ -8,8 +8,8 @@ using UCarLink.API.Data;
 namespace UCarLink.API.Data.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20220928015606_initial")]
-    partial class initial
+    [Migration("20220930004449_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -17,7 +17,7 @@ namespace UCarLink.API.Data.Migrations
             modelBuilder
                 .HasAnnotation("ProductVersion", "5.0.4");
 
-            modelBuilder.Entity("UCarLink.API.Models.ClienteModel", b =>
+            modelBuilder.Entity("UCarLink.API.Models.Cliente", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()

@@ -15,7 +15,7 @@ namespace UCarLink.API.Data.Migrations
             modelBuilder
                 .HasAnnotation("ProductVersion", "5.0.4");
 
-            modelBuilder.Entity("UCarLink.API.Models.ClienteModel", b =>
+            modelBuilder.Entity("UCarLink.API.Models.Cliente", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()

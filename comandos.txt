@@ -1,0 +1,17 @@
+﻿--Compilar
+dotnet watch run
+
+-- instalar dotnet-ef 
+dotnet tool install --global dotnet-ef
+
+-- Criar migrations
+dotnet ef migrations add Initial -o Data/Migrations
+
+-- remover migrations
+dotnet ef migrations remove
+
+-- criar/atulizar banco
+dotnet ef database update
+
+-- dropar banco
+dotnet ef database drop

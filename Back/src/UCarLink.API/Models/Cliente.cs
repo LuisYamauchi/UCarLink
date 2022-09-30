@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace UCarLink.API.Models
 {
-    public class ClienteModel
+    public class Cliente
     {
         public int Id { get; set; }
         public string Nome { get; set; }
