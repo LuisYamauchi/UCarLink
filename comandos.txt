@@ -27,3 +27,21 @@ npm install -g @angular/cli
 
 -- criar projeto
 ng new UCarLink-App
+
+-- criar componente front
+ng g c clientes
+
+-- criar componente front
+ng g c clientes
+
+-- instalar fortawesome front
+npm install --save @fortawesome/fontawesome-free
+
+-- instalar bootstrap front
+npm install ngx-bootstrap --save
+
+-- instalar bootstrap front
+npm install bootstrap@4
+
+-- add bootstrap --  não funciona.
+ng add ngx-bootstrap
