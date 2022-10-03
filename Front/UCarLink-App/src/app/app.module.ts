@@ -7,18 +7,23 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ClientesComponent } from './clientes/clientes.component';
 import { UsuariosComponent } from './usuarios/usuarios.component';
+import { NavComponent } from './nav/nav.component';
+
+import { CollapseModule } from 'ngx-bootstrap/collapse';
 
 @NgModule({
   declarations: [
     AppComponent,
     ClientesComponent,
-    UsuariosComponent
+    UsuariosComponent,
+    NavComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    CollapseModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
