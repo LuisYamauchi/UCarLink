@@ -30,7 +30,7 @@ namespace UCarLink.API.Controllers
         [HttpGet("{id}")]
         public Cliente GetById(int id)
         {
-            return this._context.Clientes.Where(evento => evento.Id == id).FirstOrDefault();
+            return this._context.Clientes.Where(evento => evento.IdCli == id).FirstOrDefault();
         }
 
         [HttpPost]
