@@ -17,7 +17,7 @@ namespace UCarLink.API.Data.Migrations
 
             modelBuilder.Entity("UCarLink.API.Models.Cliente", b =>
                 {
-                    b.Property<int>("IdCli")
+                    b.Property<int>("IdCliente")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
@@ -27,7 +27,7 @@ namespace UCarLink.API.Data.Migrations
                     b.Property<string>("Telefone")
                         .HasColumnType("TEXT");
 
-                    b.HasKey("IdCli");
+                    b.HasKey("IdCliente");
 
                     b.ToTable("Clientes");
                 });

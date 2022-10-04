@@ -10,14 +10,14 @@ namespace UCarLink.API.Data.Migrations
                 name: "Clientes",
                 columns: table => new
                 {
-                    IdCli = table.Column<int>(type: "INTEGER", nullable: false)
+                    IdCliente = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     Nome = table.Column<string>(type: "TEXT", nullable: true),
                     Telefone = table.Column<string>(type: "TEXT", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Clientes", x => x.IdCli);
+                    table.PrimaryKey("PK_Clientes", x => x.IdCliente);
                 });
         }
 
