@@ -1,30 +1,57 @@
 <h2>Clientes</h2>
 <hr>
 
-<form action="" class="form-inline">
+<div class="form-inline">
   <div class="form-group mb-2">
-    <input type="text" class="form-control mr-2" placeholder="buscar">
-    <button class="btn btn-outline-sucesses">Buscar</button>
+    <label class="mr-2">Filtro:</label>
+    <input
+      type="text"
+      class="form-control mr-2"
+      placeholder="buscar"
+      [(ngModel)]="filtroLista"
+      >
+    <!-- <button class="btn btn-outline-sucesses">Buscar</button> -->
   </div>
-</form>
-
+</div>
+<!-- <h3>Filtro: {{filtroLista}}</h3> -->
 <table class="table table-stripped">
   <thead class="thead-dark">
     <tr>
+      <!-- <th>
+        <button type="button" class="btn btn-outline-light btn-sm"
+        (click)="alterarImagem()">
+          {{exibirImagem ? 'ocultar': 'exibir'}}</button>
+      </th> -->
       <th>#</th>
-      <!-- <th>Imagem</th> -->
       <th>Nome</th>
       <th>Telefone</th>
+      <th>Opções</th>
     </tr>
   </thead>
-  <tbody>
-    <tr>
-      <!-- <td></td> -->
-      <td></td>
-      <td></td>
-      <td></td>
+  <tbody *ngIf="clientes && clientes.length">
+    <tr *ngFor="let cliente of clientesFiltrados">
+      <!-- <td>
+        <img [collapse]="!exibirImagem"
+             [isAnimated]="true"
+          src="https://blogs.opovo.com.br/artesanatodamente/wp-content/uploads/sites/52/2018/08/Esqueceram-de-Mim-740x555.jpg"
+          alt="" [style.width.px]="widthImg" [style.margin.px]="marginImg">
+      </td> -->
+      <td>{{cliente.idCliente}}</td>
+      <td>{{cliente.nome}}</td>
+      <td>{{cliente.telefone}}</td>
+      <td>
+        <button type="button" class="btn btn-primary btn-sm mr-2">Editar</button>
+        <button type="button" class="btn btn-danger btn-sm">Excluir</button>
+      </td>
     </tr>
   </tbody>
+  <tfoot *ngIf="!clientes.length">
+    <tr>
+      <td colspan="8" class="text-center">
+        <h4>Nenhum cliente encontrado</h4>
+      </td>
+    </tr>
+  </tfoot>
 </table>
 
 <!-- <div *ngFor="let cliente of clientes">
