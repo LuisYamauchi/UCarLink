@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace UCarLink.API.Data.Migrations
+namespace UCarLink.Persistence.Migrations
 {
     public partial class Initial : Migration
     {

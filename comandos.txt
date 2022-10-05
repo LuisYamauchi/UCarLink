@@ -6,6 +6,7 @@ dotnet tool install --global dotnet-ef
 
 -- Criar migrations
 dotnet ef migrations add Initial -o Data/Migrations
+dotnet ef migrations add Initial -p UCarLink.Persistence -s UCarLink.API
 
 -- remover migrations
 dotnet ef migrations remove
@@ -15,6 +16,27 @@ dotnet ef database update
 
 -- dropar banco
 dotnet ef database drop
+
+-- Criar sln do projeto
+dotnet new sln -n UCarLink
+
+-- Criar camada de persistencia
+dotnet new classlib -n UCarLink.Persistence
+
+-- Criar camada de dominios
+dotnet new classlib -n UCarLink.Domain
+
+-- Criar camada de aplicação
+dotnet new classlib -n UCarLink.Application
+
+-- Adicionar projetos ao sln
+dotnet sln UCarLink.sln add UCarLink.Application
+dotnet sln UCarLink.sln add UCarLink.Domain
+dotnet sln UCarLink.sln add UCarLink.API
+dotnet sln UCarLink.sln add UCarLink.Persistence
+
+-- Adicionar referência de projeto
+dotnet add UCarLink.API/UCarLink.API.csproj reference UCarLink.Application
 
 -- versão do npm
 npm --version

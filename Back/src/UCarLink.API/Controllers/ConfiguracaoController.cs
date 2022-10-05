@@ -1,21 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using UCarLink.API.Data;
-using UCarLink.API.Models;
-
+using UCarLink.Domain;
+using UCarLink.Persistence.Contextos;
 namespace UCarLink.API.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
     public class ConfiguracaoController : ControllerBase
     {
-        private readonly DataContext _context;
+        private readonly UCarLinkContext _context;
 
-        public ConfiguracaoController(DataContext context)
+        public ConfiguracaoController(UCarLinkContext context)
         {
             this._context = context;
 

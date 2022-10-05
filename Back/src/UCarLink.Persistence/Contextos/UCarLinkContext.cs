@@ -1,15 +1,11 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using UCarLink.API.Models;
+using UCarLink.Domain;
 
-namespace UCarLink.API.Data
+namespace UCarLink.Persistence.Contextos
 {
-    public class DataContext : DbContext
+    public class UCarLinkContext : DbContext
     {
-        public DataContext(DbContextOptions<DataContext> options) : base(options) { }
+        public UCarLinkContext(DbContextOptions<UCarLinkContext> options) : base(options) { }
         public DbSet<Cliente> Clientes { get; set; }
         public DbSet<Combustivel> Combustiveis { get; set; }
         public DbSet<Configuracao> Configuracoes { get; set; }
@@ -21,5 +17,13 @@ namespace UCarLink.API.Data
         public DbSet<Vendedor> Vendedores { get; set; }
         public DbSet<Modelo> Modelos { get; set; }
         public DbSet<Intencao> Intencoes { get; set; }
+        
+        //para tabelas com chave composta.
+        //protected override void OnModelCreating(ModelBuilder modelBuilder)
+        //{
+        //    modelBuilder.Entity<Classe>()
+        //    .HasKey(C => new {C.Id1, C.Id2} );
+        //}
+
     }
 }

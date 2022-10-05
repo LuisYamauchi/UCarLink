@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using UCarLink.API.Data;
-using UCarLink.API.Models;
+using UCarLink.Domain;
+using UCarLink.Persistence.Contextos;
 
 namespace UCarLink.API.Controllers
 {
@@ -13,9 +10,9 @@ namespace UCarLink.API.Controllers
     [Route("api/[controller]")]
     public class CombustivelController : ControllerBase
     {
-        private readonly DataContext _context;
+        private readonly UCarLinkContext _context;
 
-        public CombustivelController(DataContext context)
+        public CombustivelController(UCarLinkContext context)
         {
             this._context = context;
 

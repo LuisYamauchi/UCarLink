@@ -2,12 +2,13 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using UCarLink.API.Data;
+using UCarLink.Persistence.Contextos;
+using UCarLink.Persistence;
 
-namespace UCarLink.API.Data.Migrations
+namespace UCarLink.Persistence.Migrations
 {
-    [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [DbContext(typeof(UCarLinkContext))]
+    partial class UCarLinkContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
@@ -15,7 +16,7 @@ namespace UCarLink.API.Data.Migrations
             modelBuilder
                 .HasAnnotation("ProductVersion", "5.0.4");
 
-            modelBuilder.Entity("UCarLink.API.Models.Cliente", b =>
+            modelBuilder.Entity("UCarLink.Domain.Models.Cliente", b =>
                 {
                     b.Property<int>("IdCliente")
                         .ValueGeneratedOnAdd()

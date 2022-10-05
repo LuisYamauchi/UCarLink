@@ -3,12 +3,13 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using UCarLink.API.Data;
+using UCarLink.Persistence.Contextos;
+using UCarLink.Persistence;
 
-namespace UCarLink.API.Data.Migrations
+namespace UCarLink.Persistence.Migrations
 {
-    [DbContext(typeof(DataContext))]
-    [Migration("20221004015603_Initial")]
+    [DbContext(typeof(UCarLinkContext))]
+    [Migration("20221005013357_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -17,7 +18,7 @@ namespace UCarLink.API.Data.Migrations
             modelBuilder
                 .HasAnnotation("ProductVersion", "5.0.4");
 
-            modelBuilder.Entity("UCarLink.API.Models.Cliente", b =>
+            modelBuilder.Entity("UCarLink.Domain.Models.Cliente", b =>
                 {
                     b.Property<int>("IdCliente")
                         .ValueGeneratedOnAdd()
