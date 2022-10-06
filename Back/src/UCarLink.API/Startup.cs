@@ -5,7 +5,12 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using UCarLink.Application;
+using UCarLink.Application.Contratos;
+using UCarLink.Persistence;
 using UCarLink.Persistence.Contextos;
+using UCarLink.Persistence.Contratos;
+
 namespace UCarLink.API
 {
     public class Startup
@@ -23,7 +28,11 @@ namespace UCarLink.API
             services.AddDbContext<UCarLinkContext>(
                 context => context.UseSqlite(Configuration.GetConnectionString("Default"))
             );
-            services.AddControllers();
+            services.AddControllers()
+                    .AddNewtonsoftJson(x => x.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
+            services.AddScoped<IClienteService, ClienteService>();
+            services.AddScoped<IGeralPersist, GeralPersist>();
+            services.AddScoped<IClientePersist, ClientePersist>();
             services.AddCors();
             services.AddSwaggerGen(c =>
             {

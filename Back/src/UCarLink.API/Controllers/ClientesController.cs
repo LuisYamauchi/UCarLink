@@ -1,8 +1,9 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using UCarLink.Application.Contratos;
 using UCarLink.Domain;
-using UCarLink.Persistence.Contextos;
 
 namespace UCarLink.API.Controllers
 {
@@ -10,42 +11,99 @@ namespace UCarLink.API.Controllers
     [Route("api/[controller]")]
     public class ClientesController : ControllerBase
     {
-        private readonly UCarLinkContext _context;
+        private readonly IClienteService _clienteService;
 
-        public ClientesController(UCarLinkContext context)
+        public ClientesController(IClienteService clienteService)
         {
-            this._context = context;
-
+            this._clienteService = clienteService;
         }
 
         [HttpGet]
-        public IEnumerable<Cliente> Get()
+        public async Task<IActionResult> Get()
         {
-            return this._context.Clientes;
+            try
+            {
+                var clientes = await _clienteService.GetAllClientesAsync();
+                if(!clientes.Any()) return NotFound("Nenhum cliente encontrado.");
+                return Ok(clientes);
+            }
+            catch (System.Exception ex)
+            {
+                return this.StatusCode(StatusCodes.Status500InternalServerError, $"Erro ao tentar recuparar clientes. Erro {ex.Message}");
+            }
         }
         
-        [HttpGet("{id}")]
-        public Cliente GetById(int id)
+        [HttpGet("{idCliente}")]
+        public async Task<IActionResult> GetById(int idCliente)
         {
-            return this._context.Clientes.Where(evento => evento.IdCliente == id).FirstOrDefault();
+            try
+            {
+                var cliente = await _clienteService.GetClientesByIdAsync(idCliente);
+                if(cliente == null) return NotFound("Cliente não encontrado.");
+                return Ok(cliente);
+            }
+            catch (System.Exception ex)
+            {
+                return this.StatusCode(StatusCodes.Status500InternalServerError, $"Erro ao tentar recuparar cliente. Erro {ex.Message}");
+            }
+        }
+
+        [HttpGet("{nome}/nome")]
+        public async Task<IActionResult> GetByNome(string nome)
+        {
+            try
+            {
+                var clientes = await _clienteService.GetAllClientesByNomeAsync(nome);
+                if(clientes == null) return NotFound("Clientes por nome não encontrado.");
+                return Ok(clientes);
+            }
+            catch (System.Exception ex)
+            {
+                return this.StatusCode(StatusCodes.Status500InternalServerError, $"Erro ao tentar recuparar clientes por nome. Erro {ex.Message}");
+            }
         }
 
         [HttpPost]
-        public string Post()
+        public async Task<IActionResult> Post(Cliente model)
         {
-            return "Exemplo de Post";
+            try
+            {
+                var cliente = await _clienteService.AddCliente(model);
+                if(cliente == null) return BadRequest("Erro ao tentar adicionar cliente.");
+                return Ok(cliente);
+            }
+            catch (System.Exception ex)
+            {
+                return this.StatusCode(StatusCodes.Status500InternalServerError, $"Erro ao tentar adicionar cliente. Erro {ex.Message}");
+            }
         }
 
-        [HttpPut("{id}")]
-        public string Put(int id)
+        [HttpPut("{idCliente}")]
+        public async Task<IActionResult> Put(int idCliente, Cliente model)
         {
-            return $"Exemplo de Put com id = {id}";
+            try
+            {
+                var cliente = await _clienteService.UpdateCliente(idCliente, model);
+                if(cliente == null) return BadRequest("Erro ao tentar atualizar cliente.");
+                return Ok(cliente);
+            }
+            catch (System.Exception ex)
+            {
+                return this.StatusCode(StatusCodes.Status500InternalServerError, $"Erro ao tentar atualizar cliente. Erro {ex.Message}");
+            }
         }
 
-        [HttpDelete("{id}")]
-        public string Delete(int id)
+        [HttpDelete("{idCliente}")]
+        public async Task<IActionResult> Delete(int idCliente)
         {
-            return $"Exemplo de Delete com id = {id}";
+            try
+            {
+                return await _clienteService.DeleteCliente(idCliente)? Ok("Cliente deletado com sucesso!") : BadRequest("Cliente não deletado.") ;
+            }
+            catch (System.Exception ex)
+            {
+                return this.StatusCode(StatusCodes.Status500InternalServerError, $"Erro ao tentar excluir cliente. Erro {ex.Message}");
+            }
         }
     }
 }

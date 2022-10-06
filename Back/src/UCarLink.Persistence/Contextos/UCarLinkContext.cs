@@ -24,6 +24,5 @@ namespace UCarLink.Persistence.Contextos
         //    modelBuilder.Entity<Classe>()
         //    .HasKey(C => new {C.Id1, C.Id2} );
         //}
-
     }
 }

@@ -7,7 +7,7 @@ namespace UCarLink.Persistence.Contratos
     {
         Task<Cliente[]> GetAllClientesByNomeAsync(string nome);
         Task<Cliente[]> GetAllClientesAsync();
-        Task<Cliente> GetAllClientesByIdAsync(int IdCliente);
+        Task<Cliente> GetClientesByIdAsync(int IdCliente);
 
     }
 }

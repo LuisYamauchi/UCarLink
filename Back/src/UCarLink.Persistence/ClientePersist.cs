@@ -14,20 +14,21 @@ namespace UCarLink.Persistence
         public ClientePersist(UCarLinkContext context)
         {
             _context = context;
+            //_context.ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
         }
 
         public async Task<Cliente[]> GetAllClientesAsync()
         {
             IQueryable<Cliente> query = _context.Clientes;
-            query = query.OrderBy(c => c.Nome);
+            query = query.AsNoTracking().OrderBy(c => c.Nome);
 
             return await query.ToArrayAsync();
         }
 
-        public async Task<Cliente> GetAllClientesByIdAsync(int IdCliente)
+        public async Task<Cliente> GetClientesByIdAsync(int IdCliente)
         {
             IQueryable<Cliente> query = _context.Clientes;
-            query = query.OrderBy(c => c.Nome).Where(c => c.IdCliente == IdCliente);
+            query = query.AsNoTracking().OrderBy(c => c.Nome).Where(c => c.IdCliente == IdCliente);
 
             return await query.FirstOrDefaultAsync();
         }
@@ -35,7 +36,7 @@ namespace UCarLink.Persistence
         public async Task<Cliente[]> GetAllClientesByNomeAsync(string nome)
         {
             IQueryable<Cliente> query = _context.Clientes;
-            query = query.OrderBy(c => c.Nome).Where(c => c.Nome.ToLower().Contains(nome.ToLower()));
+            query = query.AsNoTracking().OrderBy(c => c.Nome).Where(c => c.Nome.ToLower().Contains(nome.ToLower()));
 
             return await query.ToArrayAsync();
         }

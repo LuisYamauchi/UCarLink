@@ -1,9 +1,11 @@
 using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace UCarLink.Domain
 {
     public class Intencao
     {
+        [Key]
         public int IdIntencao { get; set; }
         public Cliente Cliente { get; set; } = new Cliente();
         public int CompraVenda { get; set; }
