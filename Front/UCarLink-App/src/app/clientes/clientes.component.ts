@@ -1,6 +1,6 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-
+import { Cliente } from '../models/Cliente';
+import { ClienteService } from '../services/cliente.service';
 @Component({
   selector: 'app-clientes',
   templateUrl: './clientes.component.html',
@@ -8,47 +8,45 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ClientesComponent implements OnInit {
 
-  public clientes: any = [];
-  public clientesFiltrados: any = [];
+  public clientes: Cliente[] = [];
+  public clientesFiltrados: Cliente[] = [];
   // widthImg: number = 150;
   // marginImg: number = 2;
   // exibirImagem: boolean = true;
   private _filtroLista: string = '';
 
-  public get filtroLista(){
+  public get filtroLista() {
     return this._filtroLista;
   }
 
-  public set filtroLista(value: string){
-    this._filtroLista =value;
-    this.clientesFiltrados = (this.filtroLista ? this.filtrarEventos(this.filtroLista): this.clientes)
+  public set filtroLista(value: string) {
+    this._filtroLista = value;
+    this.clientesFiltrados = (this.filtroLista ? this.filtrarEventos(this.filtroLista) : this.clientes)
   }
 
-  filtrarEventos(filtrarPor:string): any {
+  public filtrarEventos(filtrarPor: string): Cliente[] {
     filtrarPor = filtrarPor.toLocaleLowerCase();
     return this.clientes.filter(
       (cliente: any) => cliente.nome.toLocaleLowerCase().indexOf(filtrarPor) !== -1 ||
-      cliente.telefone.toLocaleLowerCase().indexOf(filtrarPor) !== -1
-
+        cliente.telefone.toLocaleLowerCase().indexOf(filtrarPor) !== -1
     )
   }
 
-  constructor(private http: HttpClient) { }
+  constructor(private clienteService: ClienteService) { }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.getClientes();
   }
 
-
-  // alterarImagem(){
+  // alterarImagem() : void {
   //   this.exibirImagem = !this.exibirImagem;
   // }
 
   public getClientes(): void {
 
-    this.http.get('https://localhost:5001/api/Clientes').subscribe(
-      response => {
-        this.clientes = response;
+    this.clienteService.getClientes().subscribe(
+      (_clientes: Cliente[]) => {
+        this.clientes = _clientes;
         this.clientesFiltrados = this.clientes;
       },
       error => console.log(error)
