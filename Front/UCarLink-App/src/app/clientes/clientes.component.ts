@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
+import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { ToastrService } from 'ngx-toastr';
 import { Cliente } from '../models/Cliente';
 import { ClienteService } from '../services/cliente.service';
 @Component({
@@ -7,6 +10,8 @@ import { ClienteService } from '../services/cliente.service';
   styleUrls: ['./clientes.component.scss']
 })
 export class ClientesComponent implements OnInit {
+
+  modalRef!: BsModalRef;
 
   public clientes: Cliente[] = [];
   public clientesFiltrados: Cliente[] = [];
@@ -32,10 +37,21 @@ export class ClientesComponent implements OnInit {
     )
   }
 
-  constructor(private clienteService: ClienteService) { }
+  constructor(
+    private clienteService: ClienteService,
+    private modalService: BsModalService,
+    private toastr: ToastrService,
+    private spinner: NgxSpinnerService) { }
 
   public ngOnInit(): void {
     this.getClientes();
+    /** spinner starts on init */
+    this.spinner.show();
+
+    setTimeout(() => {
+      /** spinner ends after 5 seconds */
+      this.spinner.hide();
+    }, 5000);
   }
 
   // alterarImagem() : void {
@@ -51,5 +67,18 @@ export class ClientesComponent implements OnInit {
       },
       error => console.log(error)
     );
+  }
+
+  openModal(template: TemplateRef<any>) {
+    this.modalRef = this.modalService.show(template, { class: 'modal-sm' });
+  }
+
+  confirm(): void {
+    this.modalRef.hide();
+    this.toastr.success('O cliente foi deletado com sucesso!', 'Deletado!');
+  }
+
+  decline(): void {
+    this.modalRef.hide();
   }
 }

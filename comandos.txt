@@ -71,3 +71,4 @@ ng add ngx-bootstrap
 https://fontawesome.com/docs/web/setup/packages
 https://getbootstrap.com/docs/5.0/components/navbar/#nav
 https://valor-software.com/ngx-bootstrap/#/components/collapse?tab=overview
+https://www.npmjs.com/package/ngx-toastr
