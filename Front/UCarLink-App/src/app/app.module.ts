@@ -17,20 +17,49 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ClientesComponent } from './clientes/clientes.component';
-import { UsuariosComponent } from './usuarios/usuarios.component';
+import { ClientesComponent } from './components/clientes/clientes.component';
 import { NavComponent } from './nav/nav.component';
+import { CombustivelComponent } from './components/combustivel/combustivel.component';
+import { ConfiguracaoComponent } from './components/configuracao/configuracao.component';
+import { CorVeiculoComponent } from './components/cor-veiculo/cor-veiculo.component';
+import { IntencaoComponent } from './components/intencao/intencao.component';
+import { LojaComponent } from './components/loja/loja.component';
+import { ModeloComponent } from './components/modelo/modelo.component';
+import { MontadoraComponent } from './components/montadora/montadora.component';
+import { TipoPortaComponent } from './components/tipo-porta/tipo-porta.component';
+import { TipoVeiculoComponent } from './components/tipo-veiculo/tipo-veiculo.component';
+import { VendedorComponent } from './components/vendedor/vendedor.component';
 
 import { ClienteService } from './services/cliente.service';
 import { DateTimeFormatPipe } from './helpers/DateTimeFormat.pipe';
+import { TituloComponent } from './shared/titulo/titulo.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ClientesComponent,
-    UsuariosComponent,
+    CombustivelComponent,
+    ConfiguracaoComponent,
+    CorVeiculoComponent,
+    IntencaoComponent,
+    LojaComponent,
+    ModeloComponent,
+    MontadoraComponent,
+    TipoPortaComponent,
+    TipoVeiculoComponent,
+    VendedorComponent,
     NavComponent,
-    DateTimeFormatPipe
+    DateTimeFormatPipe,
+    TituloComponent,
+    CombustivelComponent,
+    ConfiguracaoComponent,
+    CorVeiculoComponent,
+    IntencaoComponent,
+    LojaComponent,
+    ModeloComponent,
+    MontadoraComponent,
+    TipoPortaComponent,
+    TipoVeiculoComponent
   ],
   imports: [
     BrowserModule,
