@@ -45,13 +45,13 @@ export class ClientesComponent implements OnInit {
 
   public ngOnInit(): void {
     this.getClientes();
-    /** spinner starts on init */
-    this.spinner.show();
+    // /** spinner starts on init */
+    // this.spinner.show();
 
-    setTimeout(() => {
-      /** spinner ends after 5 seconds */
-      this.spinner.hide();
-    }, 5000);
+    // setTimeout(() => {
+    //   /** spinner ends after 5 seconds */
+    //   this.spinner.hide();
+    // }, 5000);
   }
 
   // alterarImagem() : void {
