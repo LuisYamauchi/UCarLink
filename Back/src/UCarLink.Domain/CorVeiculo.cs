@@ -6,6 +6,7 @@ namespace UCarLink.Domain
     {
         [Key]
         public int IdCorVeiculo { get; set; }
+        [Required]
         public string Descricao { get; set; }
     }
 }
