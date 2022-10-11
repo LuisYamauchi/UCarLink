@@ -1,3 +1,4 @@
+import { RegistrationComponent } from './components/vendedor/registration/registration.component';
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from  '@angular/common/http';
@@ -36,6 +37,8 @@ import { LoginComponent } from './components/vendedor/login/login.component';
 import { ClienteService } from './services/cliente.service';
 import { DateTimeFormatPipe } from './helpers/DateTimeFormat.pipe';
 import { TituloComponent } from './shared/titulo/titulo.component';
+import { ClienteDetalheComponent } from './components/clientes/cliente-detalhe/cliente-detalhe.component';
+import { ClienteListaComponent } from './components/clientes/cliente-lista/cliente-lista.component';
 
 @NgModule({
   declarations: [
@@ -64,7 +67,10 @@ import { TituloComponent } from './shared/titulo/titulo.component';
     MontadoraComponent,
     TipoPortaComponent,
     TipoVeiculoComponent,
-    LoginComponent
+    LoginComponent,
+    ClienteDetalheComponent,
+    ClienteListaComponent,
+    RegistrationComponent
   ],
   imports: [
     BrowserModule,

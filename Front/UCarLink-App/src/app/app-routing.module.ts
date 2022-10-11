@@ -1,3 +1,6 @@
+import { RegistrationComponent } from './components/vendedor/registration/registration.component';
+import { ClienteListaComponent } from './components/clientes/cliente-lista/cliente-lista.component';
+import { ClienteDetalheComponent } from './components/clientes/cliente-detalhe/cliente-detalhe.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
@@ -16,7 +19,22 @@ import { VendedorComponent } from './components/vendedor/vendedor.component';
 import { LoginComponent } from './components/vendedor/login/login.component';
 
 const routes: Routes = [
-  { path: 'clientes', component: ClientesComponent },
+  {
+    path: 'vendedor', component: VendedorComponent,
+    children: [
+      { path: 'login', component: LoginComponent },
+      { path: 'registration', component: RegistrationComponent }
+    ]
+  },
+  { path: 'clientes', redirectTo:'clientes/lista' },
+  {
+    path: 'clientes', component: ClientesComponent,
+    children: [
+      { path: 'detalhe/:id', component: ClienteDetalheComponent },
+      { path: 'detalhe', component: ClienteDetalheComponent },
+      { path: 'lista', component: ClienteListaComponent }
+    ]
+  },
   { path: 'combustivel', component: CombustivelComponent },
   { path: 'configuracao', component: ConfiguracaoComponent },
   { path: 'corVeiculo', component: CorVeiculoComponent },
@@ -28,9 +46,8 @@ const routes: Routes = [
   { path: 'tipoPorta', component: TipoPortaComponent },
   { path: 'tipoVeiculo', component: TipoVeiculoComponent },
   // { path: 'vendedor', component: VendedorComponent },
-  { path: 'vendedor', component: VendedorComponent },
-  { path: '', redirectTo:'dashboard', pathMatch:'full' },
-  { path: '**', redirectTo:'dashboard', pathMatch:'full' }
+  { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+  { path: '**', redirectTo: 'dashboard', pathMatch: 'full' }
 ];
 
 @NgModule({
