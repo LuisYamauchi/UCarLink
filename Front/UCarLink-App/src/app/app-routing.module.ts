@@ -1,3 +1,4 @@
+import { PerfilComponent } from './components/vendedor/perfil/perfil.component';
 import { RegistrationComponent } from './components/vendedor/registration/registration.component';
 import { ClienteListaComponent } from './components/clientes/cliente-lista/cliente-lista.component';
 import { ClienteDetalheComponent } from './components/clientes/cliente-detalhe/cliente-detalhe.component';
@@ -23,6 +24,7 @@ const routes: Routes = [
     path: 'vendedor', component: VendedorComponent,
     children: [
       { path: 'login', component: LoginComponent },
+      { path: 'perfil', component: PerfilComponent },
       { path: 'registration', component: RegistrationComponent }
     ]
   },

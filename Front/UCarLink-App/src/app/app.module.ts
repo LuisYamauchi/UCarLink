@@ -39,6 +39,7 @@ import { DateTimeFormatPipe } from './helpers/DateTimeFormat.pipe';
 import { TituloComponent } from './shared/titulo/titulo.component';
 import { ClienteDetalheComponent } from './components/clientes/cliente-detalhe/cliente-detalhe.component';
 import { ClienteListaComponent } from './components/clientes/cliente-lista/cliente-lista.component';
+import { PerfilComponent } from './components/vendedor/perfil/perfil.component';
 
 @NgModule({
   declarations: [
@@ -70,7 +71,8 @@ import { ClienteListaComponent } from './components/clientes/cliente-lista/clien
     LoginComponent,
     ClienteDetalheComponent,
     ClienteListaComponent,
-    RegistrationComponent
+    RegistrationComponent,
+    PerfilComponent
   ],
   imports: [
     BrowserModule,
