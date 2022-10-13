@@ -6,11 +6,11 @@ import { environment } from 'src/environments/environment';
 import { Vendedor } from '../models/Vendedor';
 
 @Injectable()
-export class AccountService {
+export class VendedorService {
   private currentVendedorSource = new ReplaySubject<Vendedor>(1);
   public currentVendedor$ = this.currentVendedorSource.asObservable();
 
-  baseUrl = environment.apiURL + 'api/account/'
+  baseUrl = environment.apiURL + 'api/vendedor/'
   constructor(private http: HttpClient) { }
 
   public login(model: any): Observable<void> {

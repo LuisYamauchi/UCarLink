@@ -1,47 +1,64 @@
 <div class="card rounded shadow-sm">
-<form>
-  <div class="p-3">
-    <div class="form-row">
-      <div class="form-group col-md-12">
-        <label>Tema</label>
-        <input type="text" class="form-control" placeholder="Insira o Tema">
+  <form [formGroup]="form">
+    <div class="p-3">
+      <div class="form-row">
+        <div class="form-group col-md-12">
+          <label>Nome</label>
+          <input
+            type="text"
+            class="form-control"
+            [ngClass]="cssValidator(f.nome)"
+            formControlName="nome"
+            placeholder="Insira o Nome"
+            [(ngModel)]="cliente.nome"
+          />
+          <div *ngIf="f.nome.errors?.required" class="invalid-feedback">
+            Nome é obrigatório.
+          </div>
+          <div *ngIf="f.nome.errors?.minlength" class="invalid-feedback">
+            Nome deve ter no mínimo 4 caracteres.
+          </div>
+          <div *ngIf="f.nome.errors?.maxlength" class="invalid-feedback">
+            Nome deve ter no máximo 100 caracteres.
+          </div>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-2">
+          <label>Telefone</label>
+          <input
+            type="text"
+            class="form-control"
+            [ngClass]="cssValidator(f.telefone)"
+            formControlName="telefone"
+            placeholder="00-90000-0000"
+            [(ngModel)]="cliente.telefone"
+          />
+          <div
+            *ngIf="f.telefone.errors?.required && f.telefone.touched"
+            class="invalid-feedback"
+          >
+            Telefone é obrigatório.
+          </div>
+          <div *ngIf="f.telefone.errors?.minlength" class="invalid-feedback">
+            Telefone deve ter no mínimo 13 caracteres.
+          </div>
+          <div *ngIf="f.telefone.errors?.maxlength" class="invalid-feedback">
+            Telefone deve ter no máximo 13 caracteres.
+          </div>
+        </div>
       </div>
     </div>
-    <div class="form-row">
-      <div class="form-group col-md-8">
-        <label>Local</label>
-        <input type="text" class="form-control" placeholder="">
-      </div>
-      <div class="form-group col-md-4">
-        <label>Data e Hora</label>
-        <input type="datetime" class="form-control" placeholder="">
-      </div>
-    </div>
-    <div class="form-row">
-      <div class="form-group col-md-2">
-        <label>Qtd Pessoas</label>
-        <input type="text" class="form-control is-invalid" placeholder="">
-      </div>
-      <div class="form-group col-md-4">
-        <label>Telefone</label>
-        <input type="text" class="form-control" placeholder="(000) 90000-0000">
-      </div>
-      <div class="form-group col-md-6">
-        <label>Email</label>
-        <input type="text" class="form-control" placeholder="e-mail">
+    <div class="card-footer">
+      <div class="d-flex">
+        <button class="btn btn-outline-secondary mr-auto border" (click)="resetForm()">
+          Cancelar Alteração
+        </button>
+        <button class="btn btn-success" [disabled]="!form.valid" (click)="salvarCliente()">
+          <!-- <span class="spinner-border spinner-border-sm mr-1"></span> -->
+          Salvar Evento
+        </button>
       </div>
     </div>
-  </div>
-  <div class="card-footer">
-    <div class="d-flex">
-      <button class="btn btn-outline-secondary mr-auto border">
-        Cancelar Alteração
-      </button>
-      <button class="btn btn-success">
-        <span class="spinner-border spinner-border-sm mr-1"></span>
-        Salvar Evento
-      </button>
-    </div>
-  </div>
-</form>
+  </form>
 </div>

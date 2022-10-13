@@ -1,9 +1,10 @@
 import { Loja } from "./Loja";
 
 export interface Vendedor {
-  email: string;
-  password: string;
   idVendedor: number;
   nome: string;
+  usuario: string;
+  email: string;
+  password: string;
   loja: Loja;
 }

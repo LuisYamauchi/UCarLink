@@ -1,23 +1,17 @@
 <div class="row mt-4">
-
-	<!-- <div class="col-md-6 d-none d-md-block" style="height: 450px;">
-		<div class="text-center col-md-12 my-auto side-heder">
-			<h1>Cadastro de Usuário</h1>
-			<img src="../../../../assets/registerImage.png" class="my-4" alt="" width="400px">
-		</div>
-	</div> -->
-
-	<div class="col-md-6">
-
+	<div class="col-md-12">
     <form class="p-1">
       <div class="pb-2 d-block d-md-none">
-        <h3 class="border-bottom">Cadastro de Usuário</h3>
+        <h3 class="border-bottom">Cadastro de Vendedor</h3>
       </div>
       <div class="form-row">
         <div class="form-group col-sm-6">
-          <label>Primeiro Nome</label>
-          <input type="text" class="form-control" placeholder="Insira o Primeiro nome" />
-        </div>
+          <label>Nome</label>
+          <input type="text" class="form-control" formControlName="nome"
+            [ngClass]="{'is-invalid': f.nome.errors && f.nome.touched}" placeholder="Insira o nome" />
+          <div class="invalid-feedback">
+            Nome é obrigatório.
+          </div>        </div>
         <div class="form-group col-sm-6">
           <label>Último nome</label>
           <input type="text" class="form-control" placeholder="Insira o Último nome" />
@@ -29,7 +23,7 @@
       </div>
       <div class="form-group">
         <label for="">Usuario:</label>
-        <input class="form-control" type="text" placeholder="Insira o nome de Usuário" />
+        <input class="form-control" type="text" placeholder="Insira o nome de Vendedor" />
       </div>
       <div class="form-row">
         <div class="form-group col-sm-6">
@@ -70,7 +64,7 @@
 
 	<div class="col-md-6 d-none d-md-block" style="height: 450px;">
 		<div class="text-center col-md-12 my-auto side-heder">
-			<h1>Cadastro de Usuário</h1>
+			<h1>Cadastro de Vendedor</h1>
 			<img src="../../../../assets/registerImage.png" class="my-4" alt="" width="400px">
 		</div>
 	</div>
@@ -79,7 +73,7 @@
 
     <form [formGroup]="form" class="p-1" (ngSubmit)="register()">
       <div class="pb-2 d-block d-md-none">
-        <h3 class="border-bottom">Cadastro de Usuário</h3>
+        <h3 class="border-bottom">Cadastro de Vendedor</h3>
       </div>
       <div class="form-row">
         <div class="form-group col-sm-6">
@@ -113,9 +107,9 @@
       <div class="form-group">
         <label for="">Usuario:</label>
         <input class="form-control" type="text" formControlName="userName"
-          [ngClass]="{'is-invalid': f.userName.errors && f.userName.touched}" placeholder="Insira o nome de Usuário" />
+          [ngClass]="{'is-invalid': f.userName.errors && f.userName.touched}" placeholder="Insira o nome de Vendedor" />
         <div class="invalid-feedback">
-          Usuário é obrigatório.
+          Vendedor é obrigatório.
         </div>
       </div>
       <div class="form-row">

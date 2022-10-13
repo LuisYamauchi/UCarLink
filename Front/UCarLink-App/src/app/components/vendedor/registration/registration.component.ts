@@ -1,10 +1,10 @@
-import { ValidatorField } from './../../../helpers/ValidatorField';
-import { AbstractControlOptions, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Component, OnInit } from '@angular/core';
-import { AccountService } from '../../../services/vendedor.service';
-import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { Vendedor } from 'src/app/models/Vendedor';
+import { Router } from '@angular/router';
+import { VendedorService } from './../../../services/vendedor.service';
+import { VendedorComponent } from './../vendedor.component';
+import { FormGroup, FormBuilder } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { Vendedor } from '@app/models/Vendedor';
 
 @Component({
   selector: 'app-registration',
@@ -12,7 +12,16 @@ import { Vendedor } from 'src/app/models/Vendedor';
   styleUrls: ['./registration.component.scss']
 })
 export class RegistrationComponent implements OnInit {
-  constructor() { }
+
+  vendedor = {} as Vendedor;
+  form!: FormGroup;
+
+  constructor(private fb: FormBuilder,
+    private accountService: VendedorService,
+    private router: Router,
+    private toaster: ToastrService) { }
+
+    get f(): any { return this.form.controls; }
 
   ngOnInit(): void {
   }

@@ -1,3 +1,4 @@
+import { VendedorService } from './services/vendedor.service';
 import { RegistrationComponent } from './components/vendedor/registration/registration.component';
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -96,7 +97,7 @@ import { PerfilComponent } from './components/vendedor/perfil/perfil.component';
     }),
     NgxSpinnerModule
   ],
-  providers: [ClienteService],
+  providers: [ClienteService, VendedorService],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })

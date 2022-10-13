@@ -1,14 +1,15 @@
+import { environment } from './../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Cliente } from '../models/Cliente';
+import { take, map } from 'rxjs/operators';
 
 @Injectable(
   // { providedIn: 'root' }
 )
 export class ClienteService {
-
-  baseURL = 'https://localhost:5001/api/Clientes';
+  baseURL = environment.apiURL + 'api/clientes';
 
   constructor(private http: HttpClient) { }
 
@@ -22,5 +23,23 @@ export class ClienteService {
 
   public getClienteByIdCliente(idCliente: number): Observable<Cliente> {
     return this.http.get<Cliente>(`${this.baseURL}/${idCliente}`);
+  }
+
+  public post(cliente: Cliente): Observable<Cliente> {
+    return this.http
+      .post<Cliente>(this.baseURL, cliente)
+      .pipe(take(1));
+  }
+
+  public put(cliente: Cliente): Observable<Cliente> {
+    return this.http
+      .put<Cliente>(`${this.baseURL}/${cliente.idCliente}`, cliente)
+      .pipe(take(1));
+  }
+
+  public deleteCliente(id: number): Observable<any> {
+    return this.http
+      .delete(`${this.baseURL}/${id}`)
+      .pipe(take(1));
   }
 }

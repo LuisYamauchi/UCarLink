@@ -1,8 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { UserLogin } from '../../../models/VendedorLogin';
-import { AccountService } from '../../../services/vendedor.service';
-import { Router } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
