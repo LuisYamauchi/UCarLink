@@ -97,18 +97,8 @@ namespace UCarLink.API.Controllers
         public async Task<IActionResult> Delete(int idCliente)
         {
             try
-            {                
-                var cliente = await _clienteService.GetClientesByIdAsync(idCliente);
-                if (cliente == null) return NoContent();
-                
-                if (await _clienteService.DeleteCliente(idCliente))
-                {
-                    return Ok(new { message = "Deletado" });
-                }
-                else
-                {
-                    throw new System.Exception("Ocorreu um problem não específico ao tentar deletar Evento.");
-                }
+            {
+                return await _clienteService.DeleteCliente(idCliente)? Ok("Cliente deletado com sucesso!") : BadRequest("Cliente não deletado.") ;
             }
             catch (System.Exception ex)
             {
