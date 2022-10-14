@@ -44,7 +44,7 @@
         <td>{{cliente.nome}}</td>
         <td class="d-none d-md-table-cell">{{cliente.telefone}}</td>
         <td>
-          <button type="button" class="btn btn-danger btn-lg" tooltip="Deletar" (click)="openModal(template)">
+          <button type="button" class="btn btn-danger btn-lg" tooltip="Deletar" (click)="openModal($event, template, cliente.idCliente)">
             <i class="fa fa-trash"></i>
           </button>
         </td>

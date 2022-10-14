@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Cliente } from '../models/Cliente';
 import { take, map } from 'rxjs/operators';
+import { AnyCatcher } from 'rxjs/internal/AnyCatcher';
 
 @Injectable(
   // { providedIn: 'root' }
@@ -37,9 +38,9 @@ export class ClienteService {
       .pipe(take(1));
   }
 
-  public deleteCliente(id: number): Observable<any> {
+  public deleteCliente(idCliente: number): Observable<any> {
     return this.http
-      .delete(`${this.baseURL}/${id}`)
+      .delete(`${this.baseURL}/${idCliente}`)
       .pipe(take(1));
   }
 }

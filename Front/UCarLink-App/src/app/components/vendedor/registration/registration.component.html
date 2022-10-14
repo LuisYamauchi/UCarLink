@@ -1,4 +1,4 @@
-<div class="row mt-4">
+<!-- <div class="row mt-4">
 	<div class="col-md-12">
     <form class="p-1">
       <div class="pb-2 d-block d-md-none">
@@ -58,45 +58,28 @@
     </form>
 
 	</div>
-</div>
+</div> -->
 
-<!-- <div class="row mt-4">
-
-	<div class="col-md-6 d-none d-md-block" style="height: 450px;">
-		<div class="text-center col-md-12 my-auto side-heder">
-			<h1>Cadastro de Vendedor</h1>
-			<img src="../../../../assets/registerImage.png" class="my-4" alt="" width="400px">
-		</div>
-	</div>
-
+<div class="row mt-4">
 	<div class="col-md-6">
-
     <form [formGroup]="form" class="p-1" (ngSubmit)="register()">
       <div class="pb-2 d-block d-md-none">
         <h3 class="border-bottom">Cadastro de Vendedor</h3>
       </div>
       <div class="form-row">
         <div class="form-group col-sm-6">
-          <label>Primeiro Nome</label>
-          <input type="text" class="form-control" formControlName="primeiroNome"
-            [ngClass]="{'is-invalid': f.primeiroNome.errors && f.primeiroNome.touched}" placeholder="Insira o Primeiro nome" />
+          <label>Nome</label>
+          <input type="text" class="form-control" formControlName="nome"
+            [ngClass]="{'is-invalid': f.nome.errors && f.nome.touched}" placeholder="Insira o nome" />
           <div class="invalid-feedback">
-            Primeiro Nome é obrigatório.
-          </div>
-        </div>
-        <div class="form-group col-sm-6">
-          <label>Último nome</label>
-          <input type="text" class="form-control" formControlName="ultimoNome"
-            [ngClass]="{'is-invalid': f.ultimoNome.errors && f.ultimoNome.touched}" placeholder="Insira o Último nome" />
-          <div class="invalid-feedback">
-            Último Nome é obrigatório.
+            Nome é obrigatório.
           </div>
         </div>
       </div>
       <div class="form-group">
         <label for="">Email:</label>
         <input class="form-control" type="text" formControlName="email"
-          [ngClass]="{'is-invalid': f.email.errors && f.email.touched}" placeholder="Insira o Nome Completo" />
+          [ngClass]="{'is-invalid': f.email.errors && f.email.touched}" placeholder="Insira o e-mail" />
         <div *ngIf="f.email.errors?.required && f.email.touched" class="invalid-feedback">
           e-mail é obrigatório.
         </div>
@@ -106,10 +89,10 @@
       </div>
       <div class="form-group">
         <label for="">Usuario:</label>
-        <input class="form-control" type="text" formControlName="userName"
-          [ngClass]="{'is-invalid': f.userName.errors && f.userName.touched}" placeholder="Insira o nome de Vendedor" />
+        <input class="form-control" type="text" formControlName="usuario"
+          [ngClass]="{'is-invalid': f.usuario.errors && f.usuario.touched}" placeholder="Insira o usuário do Vendedor" />
         <div class="invalid-feedback">
-          Vendedor é obrigatório.
+          Usuário é obrigatório.
         </div>
       </div>
       <div class="form-row">
@@ -140,12 +123,12 @@
           </div>
         </div>
       </div>
-      <div class="form-row p-1 mb-3">
+      <!-- <div class="form-row p-1 mb-3">
         <div class="custom-control custom-checkbox">
           <input type="checkbox" class="custom-control-input" id="customCheck1">
           <label class="custom-control-label">Eu concordo com os <a href="#">Termos de Uso</a>.</label>
         </div>
-      </div>
+      </div> -->
       <div class="form-row">
         <div class="form-group col-12">
           <button [disabled]="!form.valid" class="btn btn-lg btn-success btn-block px-5" type="submit">
@@ -163,4 +146,4 @@
     </form>
 
 	</div>
-</div> -->
+</div>

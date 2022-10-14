@@ -1,8 +1,9 @@
+import { ValidatorField } from './../../../helpers/ValidatorField';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import { VendedorService } from './../../../services/vendedor.service';
 import { VendedorComponent } from './../vendedor.component';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, AbstractControlOptions, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { Vendedor } from '@app/models/Vendedor';
 
@@ -17,54 +18,43 @@ export class RegistrationComponent implements OnInit {
   form!: FormGroup;
 
   constructor(private fb: FormBuilder,
-    private accountService: VendedorService,
+    private vendedorService: VendedorService,
     private router: Router,
     private toaster: ToastrService) { }
 
     get f(): any { return this.form.controls; }
 
   ngOnInit(): void {
+    this.validation();
   }
-  // vendedor = {} as Vendedor;
-  // form!: FormGroup;
 
-  // constructor(private fb: FormBuilder,
-  //             private accountService: AccountService,
-  //             private router: Router,
-  //             private toaster: ToastrService) { }
+   private validation(): void {
 
-  // get f(): any { return this.form.controls; }
+     const formOptions: AbstractControlOptions = {
+       validators: ValidatorField.MustMatch('password', 'confirmePassword')
+     };
 
-  // ngOnInit(): void {
-  //   this.validation();
-  // }
+     this.form = this.fb.group({
+       nome: ['', Validators.required],
+       email: ['',
+         [Validators.required, Validators.email]
+       ],
+       usuario: ['', Validators.required],
+       password: ['',
+         [Validators.required, Validators.minLength(4)]
+       ],
+       confirmePassword: ['', Validators.required],
+     }, formOptions);
+   }
 
-  // private validation(): void {
 
-  //   const formOptions: AbstractControlOptions = {
-  //     validators: ValidatorField.MustMatch('password', 'confirmePassword')
-  //   };
 
-  //   this.form = this.fb.group({
-  //     primeiroNome: ['', Validators.required],
-  //     ultimoNome: ['', Validators.required],
-  //     email: ['',
-  //       [Validators.required, Validators.email]
-  //     ],
-  //     userName: ['', Validators.required],
-  //     password: ['',
-  //       [Validators.required, Validators.minLength(4)]
-  //     ],
-  //     confirmePassword: ['', Validators.required],
-  //   }, formOptions);
-  // }
-
-  // register(): void {
-  //   this.vendedor = { ...this.form.value };
-  //   this.accountService.register(this.vendedor).subscribe(
-  //     () => this.router.navigateByUrl('/dashboard'),
-  //     (error: any) => this.toaster.error(error.error)
-  //   )
-  // }
+   register(): void {
+     this.vendedor = { ...this.form.value };
+     this.vendedorService.register(this.vendedor).subscribe(
+       () => this.router.navigateByUrl('/dashboard'),
+       (error: any) => this.toaster.error(error.error)
+     )
+   }
 
 }

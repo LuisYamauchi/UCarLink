@@ -5,6 +5,8 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { Cliente } from '@app/models/Cliente';
 import { ClienteService } from '@app/services/cliente.service';
+import { PaginatedResult, Pagination } from '@app/models/Pagination';
+import { debounceTime, Subject } from 'rxjs';
 
 @Component({
   selector: 'app-cliente-lista',
@@ -12,15 +14,17 @@ import { ClienteService } from '@app/services/cliente.service';
   styleUrls: ['./cliente-lista.component.scss']
 })
 export class ClienteListaComponent implements OnInit {
-
   modalRef!: BsModalRef;
-
   public clientes: Cliente[] = [];
+  public idCliente = 0;
+  public pagination = {} as Pagination;
   public clientesFiltrados: Cliente[] = [];
   // widthImg: number = 150;
   // marginImg: number = 2;
   // exibirImagem: boolean = true;
   private _filtroLista: string = '';
+
+  termoBuscaChanged: Subject<string> = new Subject<string>();
 
   public get filtroLista() {
     return this._filtroLista;
@@ -62,23 +66,51 @@ export class ClienteListaComponent implements OnInit {
   // }
 
   public getClientes(): void {
-
+    this.spinner.show();
     this.clienteService.getClientes().subscribe(
       (_clientes: Cliente[]) => {
         this.clientes = _clientes;
         this.clientesFiltrados = this.clientes;
       },
-      error => console.log(error)
-    );
+      (error: any) => {
+        this.spinner.hide();
+        this.toastr.error('Erro ao Carregar os clientes', 'Erro!');
+      }
+    )
+    .add(() => this.spinner.hide());
   }
 
-  openModal(template: TemplateRef<any>) {
+  openModal(event: any, template: TemplateRef<any>, idCliente: number): void {
+    event.stopPropagation();
+    this.idCliente = idCliente;
     this.modalRef = this.modalService.show(template, { class: 'modal-sm' });
   }
 
   confirm(): void {
     this.modalRef.hide();
-    this.toastr.success('O cliente foi deletado com sucesso!', 'Deletado!');
+    this.spinner.show();
+
+    this.clienteService
+      .deleteCliente(this.idCliente)
+      .subscribe(
+        (result: any) => {
+          if (result.message === 'Deletado') {
+            this.toastr.success(
+              'O cliente foi deletado com Sucesso.',
+              'Deletado!'
+            );
+            this.getClientes();
+          }
+        },
+        (error: any) => {
+          console.error(error);
+          this.toastr.error(
+            `Erro ao tentar deletar o cliente ${this.idCliente}`,
+            'Erro'
+          );
+        }
+      )
+      .add(() => this.spinner.hide());
   }
 
   decline(): void {
