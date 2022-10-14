@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -98,7 +99,14 @@ namespace UCarLink.API.Controllers
         {
             try
             {
-                return await _lojaService.DeleteLoja(idLoja) ? Ok("Loja deletada com sucesso!") : BadRequest("Loja não deletada.");
+                var loja = await _lojaService.GetLojasByIdAsync(idLoja);
+                
+                if (loja == null) return NoContent();
+
+                if (await _lojaService.DeleteLoja(idLoja))
+                    return Ok(new { message = "Deletado" });
+                else
+                    throw new Exception("Ocorreu um problem não específico ao tentar deletar loja.");
             }
             catch (System.Exception ex)
             {

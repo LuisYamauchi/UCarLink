@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -24,7 +25,7 @@ namespace UCarLink.API.Controllers
             try
             {
                 var clientes = await _clienteService.GetAllClientesAsync();
-                if(!clientes.Any()) return NotFound("Nenhum cliente encontrado.");
+                if (!clientes.Any()) return NotFound("Nenhum cliente encontrado.");
                 return Ok(clientes);
             }
             catch (System.Exception ex)
@@ -32,14 +33,14 @@ namespace UCarLink.API.Controllers
                 return this.StatusCode(StatusCodes.Status500InternalServerError, $"Erro ao tentar recuparar clientes. Erro {ex.Message}");
             }
         }
-        
+
         [HttpGet("{idCliente}")]
         public async Task<IActionResult> GetById(int idCliente)
         {
             try
             {
                 var cliente = await _clienteService.GetClientesByIdAsync(idCliente);
-                if(cliente == null) return NotFound("Cliente não encontrado.");
+                if (cliente == null) return NotFound("Cliente não encontrado.");
                 return Ok(cliente);
             }
             catch (System.Exception ex)
@@ -54,7 +55,7 @@ namespace UCarLink.API.Controllers
             try
             {
                 var clientes = await _clienteService.GetAllClientesByNomeAsync(nome);
-                if(clientes == null) return NotFound("Clientes por nome não encontrado.");
+                if (clientes == null) return NotFound("Clientes por nome não encontrado.");
                 return Ok(clientes);
             }
             catch (System.Exception ex)
@@ -69,7 +70,7 @@ namespace UCarLink.API.Controllers
             try
             {
                 var cliente = await _clienteService.AddCliente(model);
-                if(cliente == null) return BadRequest("Erro ao tentar adicionar cliente.");
+                if (cliente == null) return BadRequest("Erro ao tentar adicionar cliente.");
                 return Ok(cliente);
             }
             catch (System.Exception ex)
@@ -84,7 +85,7 @@ namespace UCarLink.API.Controllers
             try
             {
                 var cliente = await _clienteService.UpdateCliente(idCliente, model);
-                if(cliente == null) return BadRequest("Erro ao tentar atualizar cliente.");
+                if (cliente == null) return BadRequest("Erro ao tentar atualizar cliente.");
                 return Ok(cliente);
             }
             catch (System.Exception ex)
@@ -98,7 +99,13 @@ namespace UCarLink.API.Controllers
         {
             try
             {
-                return await _clienteService.DeleteCliente(idCliente)? Ok("Cliente deletado com sucesso!") : BadRequest("Cliente não deletado.") ;
+                var cliente = await _clienteService.GetClientesByIdAsync(idCliente);
+                if (cliente == null) return NoContent();
+
+                if (await _clienteService.DeleteCliente(idCliente))
+                    return Ok(new { message = "Deletado" });
+                else
+                    throw new Exception("Ocorreu um problem não específico ao tentar deletar cliente.");
             }
             catch (System.Exception ex)
             {
