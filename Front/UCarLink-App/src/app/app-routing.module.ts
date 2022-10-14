@@ -1,3 +1,5 @@
+import { HomeComponent } from './components/home/home.component';
+import { AuthGuard } from './guard/auth.guard';
 import { PerfilComponent } from './components/vendedor/perfil/perfil.component';
 import { RegistrationComponent } from './components/vendedor/registration/registration.component';
 import { ClienteListaComponent } from './components/clientes/cliente-lista/cliente-lista.component';
@@ -20,36 +22,50 @@ import { VendedorComponent } from './components/vendedor/vendedor.component';
 import { LoginComponent } from './components/vendedor/login/login.component';
 
 const routes: Routes = [
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
   {
-    path: 'vendedor', component: VendedorComponent,
+    path: '',
+    runGuardsAndResolvers: 'always',
+    canActivate: [AuthGuard],
+    children: [{
+      path: 'vendedor', component: VendedorComponent,
+      children: [
+        { path: 'perfil', component: PerfilComponent },
+      ]
+    },
+    // { path: 'clientes', redirectTo: 'clientes/lista' },
+    {
+      path: 'clientes', component: ClientesComponent,
+      children: [
+        { path: 'detalhe/:idCliente', component: ClienteDetalheComponent },
+        { path: 'detalhe', component: ClienteDetalheComponent },
+        { path: 'lista', component: ClienteListaComponent }
+      ]
+    },
+    { path: 'combustivel', component: CombustivelComponent },
+    { path: 'configuracao', component: ConfiguracaoComponent },
+    { path: 'corVeiculo', component: CorVeiculoComponent },
+    { path: 'dashboard', component: DashboardComponent },
+    { path: 'intencao', component: IntencaoComponent },
+    { path: 'loja', component: LojaComponent },
+    { path: 'modelo', component: ModeloComponent },
+    { path: 'montadora', component: MontadoraComponent },
+    { path: 'tipoPorta', component: TipoPortaComponent },
+    { path: 'tipoVeiculo', component: TipoVeiculoComponent },
+    ]
+  },
+  {
+    path: 'user', component: VendedorComponent,
     children: [
       { path: 'login', component: LoginComponent },
-      { path: 'perfil', component: PerfilComponent },
       { path: 'registration', component: RegistrationComponent }
     ]
   },
-  { path: 'clientes', redirectTo:'clientes/lista' },
-  {
-    path: 'clientes', component: ClientesComponent,
-    children: [
-      { path: 'detalhe/:idCliente', component: ClienteDetalheComponent },
-      { path: 'detalhe', component: ClienteDetalheComponent },
-      { path: 'lista', component: ClienteListaComponent }
-    ]
-  },
-  { path: 'combustivel', component: CombustivelComponent },
-  { path: 'configuracao', component: ConfiguracaoComponent },
-  { path: 'corVeiculo', component: CorVeiculoComponent },
-  { path: 'dashboard', component: DashboardComponent },
-  { path: 'intencao', component: IntencaoComponent },
-  { path: 'loja', component: LojaComponent },
-  { path: 'modelo', component: ModeloComponent },
-  { path: 'montadora', component: MontadoraComponent },
-  { path: 'tipoPorta', component: TipoPortaComponent },
-  { path: 'tipoVeiculo', component: TipoVeiculoComponent },
+  { path: 'home', component: HomeComponent },
+  { path: '**', redirectTo: 'home', pathMatch: 'full' },
   // { path: 'vendedor', component: VendedorComponent },
-  { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
-  { path: '**', redirectTo: 'dashboard', pathMatch: 'full' }
+  // { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+  // { path: '**', redirectTo: 'dashboard', pathMatch: 'full' }
 ];
 
 @NgModule({

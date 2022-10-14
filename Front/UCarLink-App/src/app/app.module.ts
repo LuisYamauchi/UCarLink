@@ -1,3 +1,4 @@
+import { HomeComponent } from './components/home/home.component';
 import { VendedorService } from './services/vendedor.service';
 import { RegistrationComponent } from './components/vendedor/registration/registration.component';
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
@@ -73,6 +74,7 @@ import { PerfilComponent } from './components/vendedor/perfil/perfil.component';
     ClienteDetalheComponent,
     ClienteListaComponent,
     RegistrationComponent,
+    HomeComponent,
     PerfilComponent
   ],
   imports: [

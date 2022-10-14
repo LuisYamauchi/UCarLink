@@ -1,3 +1,7 @@
+import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
+import { VendedorService } from './../../../services/vendedor.service';
+import { VendedorLogin } from './../../../models/VendedorLogin';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -6,30 +10,27 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
-  constructor() { }
 
-  ngOnInit(): void {
+  model = {} as VendedorLogin;
+
+  constructor(
+    private vendedorService: VendedorService,
+    private router: Router,
+    private toaster: ToastrService
+  ) { }
+
+  ngOnInit(): void { }
+
+  public login(): void {
+    this.vendedorService.login(this.model).subscribe(
+      () => {
+        this.router.navigateByUrl('/dashboard');
+      },
+      (error: any) => {
+        if (error.status == 401)
+          this.toaster.error('usuário ou senha inválido');
+        else console.error(error);
+      }
+    );
   }
-  // model = {} as UserLogin;
-
-  // constructor(
-  //   private accountService: AccountService,
-  //   private router: Router,
-  //   private toaster: ToastrService
-  // ) {}
-
-  // ngOnInit(): void {}
-
-  // public login(): void {
-  //   this.accountService.login(this.model).subscribe(
-  //     () => {
-  //       this.router.navigateByUrl('/dashboard');
-  //     },
-  //     (error: any) => {
-  //       if (error.status == 401)
-  //         this.toaster.error('usuário ou senha inválido');
-  //       else console.error(error);
-  //     }
-  //   );
-  // }
 }

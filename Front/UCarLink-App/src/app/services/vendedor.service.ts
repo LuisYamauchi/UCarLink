@@ -33,8 +33,8 @@ export class VendedorService {
     return this.http.put<Vendedor>(this.baseUrl + 'updateVendedor', model).pipe(
       take(1),
       map((vendedor: Vendedor) => {
-          this.setCurrentVendedor(vendedor);
-        }
+        this.setCurrentVendedor(vendedor);
+      }
       )
     )
   }
@@ -61,14 +61,4 @@ export class VendedorService {
     localStorage.setItem('vendedor', JSON.stringify(vendedor));
     this.currentVendedorSource.next(vendedor);
   }
-
-  // postUpload(file: File): Observable<Vendedor> {
-  //   const fileToUpload = file[0] as File;
-  //   const formData = new FormData();
-  //   formData.append('file', fileToUpload);
-
-  //   return this.http
-  //     .post<VendedorUpdate>(`${this.baseUrl}upload-image`, formData)
-  //     .pipe(take(1));
-  // }
 }

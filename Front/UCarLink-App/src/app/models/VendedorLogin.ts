@@ -1,4 +1,4 @@
-export class UserLogin {
+export class VendedorLogin {
   email!: string;
   password!: string;
 }

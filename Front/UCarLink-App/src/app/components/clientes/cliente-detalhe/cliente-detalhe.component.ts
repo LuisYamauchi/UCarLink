@@ -35,6 +35,7 @@ export class ClienteDetalheComponent implements OnInit {
       showWeekNumbers: false,
     };
   }
+
   constructor(
     private fb: FormBuilder,
     private localeService: BsLocaleService,
@@ -42,7 +43,7 @@ export class ClienteDetalheComponent implements OnInit {
     private clienteService: ClienteService,
     private spinner: NgxSpinnerService,
     private toastr: ToastrService,
-    private router: Router  ) {
+    private router: Router) {
     this.localeService.use('pt-br');
   }
 
@@ -51,9 +52,7 @@ export class ClienteDetalheComponent implements OnInit {
 
     if (this.idCliente !== null && this.idCliente !== 0) {
       this.spinner.show();
-
       this.estadoSalvar = 'put';
-
       this.clienteService
         .getClienteByIdCliente(this.idCliente)
         .subscribe(

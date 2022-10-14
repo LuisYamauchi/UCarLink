@@ -1,124 +1,102 @@
-<!-- <div class="row mt-4">
-	<div class="col-md-12">
-    <form class="p-1">
-      <div class="pb-2 d-block d-md-none">
-        <h3 class="border-bottom">Cadastro de Vendedor</h3>
-      </div>
-      <div class="form-row">
-        <div class="form-group col-sm-6">
-          <label>Nome</label>
-          <input type="text" class="form-control" formControlName="nome"
-            [ngClass]="{'is-invalid': f.nome.errors && f.nome.touched}" placeholder="Insira o nome" />
-          <div class="invalid-feedback">
-            Nome é obrigatório.
-          </div>        </div>
-        <div class="form-group col-sm-6">
-          <label>Último nome</label>
-          <input type="text" class="form-control" placeholder="Insira o Último nome" />
-        </div>
-      </div>
-      <div class="form-group">
-        <label for="">Email:</label>
-        <input class="form-control" type="text" placeholder="Insira o Nome Completo" />
-      </div>
-      <div class="form-group">
-        <label for="">Usuario:</label>
-        <input class="form-control" type="text" placeholder="Insira o nome de Vendedor" />
-      </div>
-      <div class="form-row">
-        <div class="form-group col-sm-6">
-          <label for="">Senha:</label>
-          <input class="form-control" type="password" placeholder="Digite uma Senha" />
-        </div>
-        <div class="form-group col-sm-6">
-          <label for="">Confirmar Senha:</label>
-          <input class="form-control" type="password" placeholder="Confirme a Senha" />
-        </div>
-      </div>
-      <div class="form-row p-1 mb-3">
-        <div class="custom-control custom-checkbox">
-          <input type="checkbox" class="custom-control-input" id="customCheck1">
-          <label class="custom-control-label">Eu concordo com os <a href="#">Termos de Uso</a>.</label>
-        </div>
-      </div>
-      <div class="form-row">
-        <div class="form-group col-12">
-          <button class="btn btn-lg btn-success btn-block px-5">
-            Registar
-          </button>
-        </div>
-      </div>
-      <div class="form-row">
-        <div class="form-group col-12">
-          <a class="btn btn-link btn-block">
-            Já sou Cadastrado
-          </a>
-        </div>
-      </div>
-    </form>
-
-	</div>
-</div> -->
-
 <div class="row mt-4">
-	<div class="col-md-6">
+  <div class="col-md-12">
     <form [formGroup]="form" class="p-1" (ngSubmit)="register()">
       <div class="pb-2 d-block d-md-none">
         <h3 class="border-bottom">Cadastro de Vendedor</h3>
       </div>
       <div class="form-row">
-        <div class="form-group col-sm-6">
+        <div class="form-group col-sm-4">
           <label>Nome</label>
-          <input type="text" class="form-control" formControlName="nome"
-            [ngClass]="{'is-invalid': f.nome.errors && f.nome.touched}" placeholder="Insira o nome" />
-          <div class="invalid-feedback">
-            Nome é obrigatório.
+          <input
+            type="text"
+            class="form-control"
+            formControlName="nome"
+            [ngClass]="{ 'is-invalid': f.nome.errors && f.nome.touched }"
+            placeholder="Insira o nome"
+          />
+          <div class="invalid-feedback">Nome é obrigatório.</div>
+        </div>
+        <div class="form-group col-sm-4">
+          <label for="">Email:</label>
+          <input
+            class="form-control"
+            type="text"
+            formControlName="email"
+            [ngClass]="{ 'is-invalid': f.email.errors && f.email.touched }"
+            placeholder="Insira o e-mail"
+          />
+          <div
+            *ngIf="f.email.errors?.required && f.email.touched"
+            class="invalid-feedback"
+          >
+            e-mail é obrigatório.
+          </div>
+          <div
+            *ngIf="f.email.errors?.email && f.email.touched"
+            class="invalid-feedback"
+          >
+            Deve ser um e-mail válido.
           </div>
         </div>
-      </div>
-      <div class="form-group">
-        <label for="">Email:</label>
-        <input class="form-control" type="text" formControlName="email"
-          [ngClass]="{'is-invalid': f.email.errors && f.email.touched}" placeholder="Insira o e-mail" />
-        <div *ngIf="f.email.errors?.required && f.email.touched" class="invalid-feedback">
-          e-mail é obrigatório.
-        </div>
-        <div *ngIf="f.email.errors?.email && f.email.touched" class="invalid-feedback">
-          Deve ser um e-mail válido.
-        </div>
-      </div>
-      <div class="form-group">
-        <label for="">Usuario:</label>
-        <input class="form-control" type="text" formControlName="usuario"
-          [ngClass]="{'is-invalid': f.usuario.errors && f.usuario.touched}" placeholder="Insira o usuário do Vendedor" />
-        <div class="invalid-feedback">
-          Usuário é obrigatório.
+        <div class="form-group col-sm-4">
+          <label for="">Usuario:</label>
+          <input
+            class="form-control"
+            type="text"
+            formControlName="usuario"
+            [ngClass]="{ 'is-invalid': f.usuario.errors && f.usuario.touched }"
+            placeholder="Insira o usuário do Vendedor"
+          />
+          <div class="invalid-feedback">Usuário é obrigatório.</div>
         </div>
       </div>
       <div class="form-row">
         <div class="form-group col-sm-6">
           <label for="">Senha:</label>
-          <input class="form-control" type="password" formControlName="password"
-            [ngClass]="{'is-invalid': f.password.errors && f.password.touched}" placeholder="Digite uma Senha" />
-          <div *ngIf="f.password.errors?.required && f.password.touched"
-          class="invalid-feedback">
+          <input
+            class="form-control"
+            type="password"
+            formControlName="password"
+            [ngClass]="{
+              'is-invalid': f.password.errors && f.password.touched
+            }"
+            placeholder="Digite uma Senha"
+          />
+          <div
+            *ngIf="f.password.errors?.required && f.password.touched"
+            class="invalid-feedback"
+          >
             Senha é obrigatório.
           </div>
-          <div *ngIf="f.password.errors?.minlength && f.password.touched"
-          class="invalid-feedback">
+          <div
+            *ngIf="f.password.errors?.minlength && f.password.touched"
+            class="invalid-feedback"
+          >
             Deve conter no mínimo 6 caracteres.
           </div>
         </div>
         <div class="form-group col-sm-6">
           <label for="">Confirmar Senha:</label>
-          <input class="form-control" type="password" formControlName="confirmePassword"
-            [ngClass]="{'is-invalid': f.confirmePassword.errors && f.confirmePassword.touched}" placeholder="Confirme a Senha" />
-          <div *ngIf="f.confirmePassword.errors?.required"
-            class="invalid-feedback">
+          <input
+            class="form-control"
+            type="password"
+            formControlName="confirmePassword"
+            [ngClass]="{
+              'is-invalid':
+                f.confirmePassword.errors && f.confirmePassword.touched
+            }"
+            placeholder="Confirme a Senha"
+          />
+          <div
+            *ngIf="f.confirmePassword.errors?.required"
+            class="invalid-feedback"
+          >
             Confirmar Senha é obrigatório.
           </div>
-          <div *ngIf="f.confirmePassword.errors?.mustMatch"
-            class="invalid-feedback">
+          <div
+            *ngIf="f.confirmePassword.errors?.mustMatch"
+            class="invalid-feedback"
+          >
             Repedir a senha é obrigatório.
           </div>
         </div>
@@ -131,7 +109,11 @@
       </div> -->
       <div class="form-row">
         <div class="form-group col-12">
-          <button [disabled]="!form.valid" class="btn btn-lg btn-success btn-block px-5" type="submit">
+          <button
+            [disabled]="!form.valid"
+            class="btn btn-lg btn-success btn-block px-5"
+            type="submit"
+          >
             Registar
           </button>
         </div>
@@ -144,6 +126,5 @@
         </div>
       </div>
     </form>
-
-	</div>
+  </div>
 </div>
