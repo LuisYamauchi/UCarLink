@@ -63,7 +63,7 @@ namespace UCarLink.Application
                 var cliente = await _clientePersist.GetClientesByIdAsync(idCliente);
                 if(cliente == null) throw new Exception("Cliente para delete não foi encontrado.");
                 
-                _geralPersist.Update<Cliente>(cliente);
+                _geralPersist.Delete<Cliente>(cliente);
                 return await _geralPersist.SaveChangesAsync();
 
             }

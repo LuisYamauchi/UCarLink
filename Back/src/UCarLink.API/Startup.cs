@@ -30,9 +30,11 @@ namespace UCarLink.API
             );
             services.AddControllers()
                     .AddNewtonsoftJson(x => x.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
-            services.AddScoped<IClienteService, ClienteService>();
+            services.AddScoped<IClienteService, ClienteService>();            
             services.AddScoped<IGeralPersist, GeralPersist>();
             services.AddScoped<IClientePersist, ClientePersist>();
+            services.AddScoped<ILojaService, LojaService>();
+            services.AddScoped<ILojaPersist, LojaPersist>();
             services.AddCors();
             services.AddSwaggerGen(c =>
             {
