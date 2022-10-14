@@ -32,7 +32,7 @@ const routes: Routes = [
   {
     path: 'clientes', component: ClientesComponent,
     children: [
-      { path: 'detalhe/:id', component: ClienteDetalheComponent },
+      { path: 'detalhe/:idCliente', component: ClienteDetalheComponent },
       { path: 'detalhe', component: ClienteDetalheComponent },
       { path: 'lista', component: ClienteListaComponent }
     ]
