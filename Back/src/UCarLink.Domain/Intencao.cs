@@ -1,5 +1,6 @@
 using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace UCarLink.Domain
 {
@@ -7,22 +8,30 @@ namespace UCarLink.Domain
     {
         [Key]
         public int IdIntencao { get; set; }
-        public Cliente Cliente { get; set; } = new Cliente();
+        [ForeignKey("Cliente")]
+        public int ClienteIdCliente { get; set; }        
         public int CompraVenda { get; set; }
-        public Vendedor VendedorInclusao { get; set; } = new Vendedor();
-        public Vendedor VendedorNegociacao { get; set; } = new Vendedor();
+        [ForeignKey("Vendedor")]
+        public int VendedorInclusaoIdVendedor { get; set; }
+        [ForeignKey("Vendedor")]
+        public int VendedorNegociacaoIdVendedor { get; set; }        
         public decimal ValorInicial { get; set; }
         public decimal ValorFinal { get; set; }
         public decimal ValorVeiculo { get; set; }
         public DateTime DataCadastro { get; set; } = DateTime.Now;
         public DateTime? DataVencimento { get; set; }
-        public Modelo Modelo { get; set; } = new Modelo();
+        [ForeignKey("Modelo")]
+        public int ModeloIdModelo { get; set; }        
         public int? AnoInicial { get; set; }
-        public int? AnoFinal { get; set; }
-        public TipoVeiculo TipoVeiculo { get; set; } = new TipoVeiculo();
-        public TipoPorta TipoPorta { get; set; } = new TipoPorta();
-        public Combustivel Combustivel { get; set; } = new Combustivel();
-        public CorVeiculo CorVeiculo { get; set; } = new CorVeiculo();
+        public int? TipoVeiculo { get; set; }
+        [ForeignKey("Modelo")]
+        public int TipoVeiculoIdTipoVeiculo { get; set; }
+        [ForeignKey("TipoPorta")]
+        public int TipoPortaIdTipoPorta { get; set; }
+        [ForeignKey("Combustivel")]
+        public int CombustivelIdCombustivel { get; set; }
+        [ForeignKey("CorVeiculo")]
+        public int CorVeiculoIdCorVeiculo { get; set; }
         public string Cambio { get; set; }
         public string ArCondicionado { get; set; }
         public string VidroEletrico { get; set; }

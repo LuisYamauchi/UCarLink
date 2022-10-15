@@ -30,7 +30,7 @@ namespace UCarLink.Application
             catch (System.Exception ex)
             {
                 
-                throw new Exception(ex.Message);
+                throw new Exception(ex.Message + "\n" + ex.InnerException);
             }
         }
 
