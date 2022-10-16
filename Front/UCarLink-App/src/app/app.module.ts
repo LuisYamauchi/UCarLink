@@ -1,3 +1,4 @@
+import { IntencaoService } from './services/intencao.service';
 import { HomeComponent } from './components/home/home.component';
 import { VendedorService } from './services/vendedor.service';
 import { RegistrationComponent } from './components/vendedor/registration/registration.component';
@@ -42,6 +43,8 @@ import { TituloComponent } from './shared/titulo/titulo.component';
 import { ClienteDetalheComponent } from './components/clientes/cliente-detalhe/cliente-detalhe.component';
 import { ClienteListaComponent } from './components/clientes/cliente-lista/cliente-lista.component';
 import { PerfilComponent } from './components/vendedor/perfil/perfil.component';
+import { IntencaoDetalheComponent } from './components/intencao/intencao-detalhe/intencao-detalhe.component';
+import { IntencaoListaComponent } from './components/intencao/intencao-lista/intencao-lista.component';
 
 @NgModule({
   declarations: [
@@ -75,7 +78,9 @@ import { PerfilComponent } from './components/vendedor/perfil/perfil.component';
     ClienteListaComponent,
     RegistrationComponent,
     HomeComponent,
-    PerfilComponent
+    PerfilComponent,
+    IntencaoDetalheComponent,
+    IntencaoListaComponent
   ],
   imports: [
     BrowserModule,
@@ -99,7 +104,7 @@ import { PerfilComponent } from './components/vendedor/perfil/perfil.component';
     }),
     NgxSpinnerModule
   ],
-  providers: [ClienteService, VendedorService],
+  providers: [ClienteService, VendedorService, IntencaoService],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })

@@ -1,3 +1,5 @@
+import { IntencaoListaComponent } from './components/intencao/intencao-lista/intencao-lista.component';
+import { IntencaoDetalheComponent } from './components/intencao/intencao-detalhe/intencao-detalhe.component';
 import { HomeComponent } from './components/home/home.component';
 import { AuthGuard } from './guard/auth.guard';
 import { PerfilComponent } from './components/vendedor/perfil/perfil.component';
@@ -40,6 +42,14 @@ const routes: Routes = [
         { path: 'detalhe/:idCliente', component: ClienteDetalheComponent },
         { path: 'detalhe', component: ClienteDetalheComponent },
         { path: 'lista', component: ClienteListaComponent }
+      ]
+    },
+    {
+      path: 'intencao', component: IntencaoComponent,
+      children: [
+        { path: 'detalhe/:idIntecao', component: IntencaoDetalheComponent },
+        { path: 'detalhe', component: IntencaoDetalheComponent },
+        { path: 'lista', component: IntencaoListaComponent }
       ]
     },
     { path: 'combustivel', component: CombustivelComponent },

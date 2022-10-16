@@ -18,6 +18,12 @@ export class TituloComponent implements OnInit {
   ngOnInit(): void {}
 
   listar(): void {
-    this.router.navigate([`/${this.titulo.toLocaleLowerCase()}/lista`]);
+    this.router.navigate([`/${this.obterRota()}/lista`]);
+  }
+
+  obterRota(): string{
+    if (this.titulo.toLocaleLowerCase() === 'intenções')
+    return 'intencao';
+    else return this.titulo.toLocaleLowerCase();
   }
 }

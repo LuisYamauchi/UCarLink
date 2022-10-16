@@ -1,0 +1,21 @@
+<div class="card rounded shadow-sm">
+  <form [formGroup]="form">
+    <div class="p-3">
+          <label>Título</label>
+          <select [(ngModel)]="intencao.cliente" class="form-control">
+          <option *ngFor="let cliente of clientes"
+          [value]="cliente.idCliente">{{cliente.nome}}</option>
+        </select>
+    </div>
+    <div class="card-footer">
+      <div class="d-flex">
+        <button class="btn btn-outline-secondary mr-auto border" (click)="resetForm()">
+          Cancelar Alteração
+        </button>
+        <button class="btn btn-success" [disabled]="!form.valid" (click)="salvarIntencao()">
+          Salvar Evento
+        </button>
+      </div>
+    </div>
+  </form>
+</div>
