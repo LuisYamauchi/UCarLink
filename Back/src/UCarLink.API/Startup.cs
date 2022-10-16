@@ -37,6 +37,8 @@ namespace UCarLink.API
             services.AddScoped<ILojaPersist, LojaPersist>();
             services.AddScoped<IVendedorService, VendedorService>();
             services.AddScoped<IVendedorPersist, VendedorPersist>();
+            services.AddScoped<IIntencaoService, IntencaoService>();
+            services.AddScoped<IIntencaoPersist, IntencaoPersist>();
             services.AddCors();
             services.AddSwaggerGen(c =>
             {

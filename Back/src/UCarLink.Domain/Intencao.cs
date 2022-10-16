@@ -22,9 +22,8 @@ namespace UCarLink.Domain
         public DateTime? DataVencimento { get; set; }
         [ForeignKey("Modelo")]
         public int ModeloIdModelo { get; set; }        
-        public int? AnoInicial { get; set; }
-        public int? TipoVeiculo { get; set; }
-        [ForeignKey("Modelo")]
+        public int? AnoInicial { get; set; }        
+        [ForeignKey("TipoVeiculo")]
         public int TipoVeiculoIdTipoVeiculo { get; set; }
         [ForeignKey("TipoPorta")]
         public int TipoPortaIdTipoPorta { get; set; }

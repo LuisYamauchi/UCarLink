@@ -10,11 +10,11 @@ namespace UCarLink.API.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class ClientesController : ControllerBase
+    public class ClienteController : ControllerBase
     {
         private readonly IClienteService _clienteService;
 
-        public ClientesController(IClienteService clienteService)
+        public ClienteController(IClienteService clienteService)
         {
             this._clienteService = clienteService;
         }
