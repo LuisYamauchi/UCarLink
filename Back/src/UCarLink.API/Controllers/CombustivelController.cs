@@ -1,8 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
 using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using UCarLink.Application.Contratos;
 using UCarLink.Domain;
-using UCarLink.Persistence.Contextos;
 
 namespace UCarLink.API.Controllers
 {
@@ -10,42 +12,105 @@ namespace UCarLink.API.Controllers
     [Route("api/[controller]")]
     public class CombustivelController : ControllerBase
     {
-        private readonly UCarLinkContext _context;
+        private readonly ICombustivelService _combustivelService;
 
-        public CombustivelController(UCarLinkContext context)
+        public CombustivelController(ICombustivelService combustivelService)
         {
-            this._context = context;
-
+            this._combustivelService = combustivelService;
         }
 
         [HttpGet]
-        public IEnumerable<Combustivel> Get()
+        public async Task<IActionResult> Get()
         {
-            return this._context.Combustiveis;
+            try
+            {
+                var combustiveis = await _combustivelService.GetAllCombustiveisAsync();
+                if (!combustiveis.Any()) return NotFound("Nenhum Combustivel encontrado.");
+                return Ok(combustiveis);
+            }
+            catch (System.Exception ex)
+            {
+                return this.StatusCode(StatusCodes.Status500InternalServerError, $"Erro ao tentar recuparar Combustiveis. Erro {ex.Message}");
+            }
         }
-        
-        [HttpGet("{id}")]
-        public Combustivel GetById(int id)
+
+        [HttpGet("{idCombustivel}")]
+        public async Task<IActionResult> GetById(int idCombustivel)
         {
-            return this._context.Combustiveis.Where(evento => evento.IdCombustivel == id).FirstOrDefault();
+            try
+            {
+                var combustivel = await _combustivelService.GetCombustiveisByIdAsync(idCombustivel);
+                if (combustivel == null) return NotFound("Combustivel não encontrado.");
+                return Ok(combustivel);
+            }
+            catch (System.Exception ex)
+            {
+                return this.StatusCode(StatusCodes.Status500InternalServerError, $"Erro ao tentar recuparar combustivel. Erro {ex.Message}");
+            }
+        }
+
+        [HttpGet("{descricao}/descricao")]
+        public async Task<IActionResult> GetByDescricao(string descricao)
+        {
+            try
+            {
+                var combustiveis = await _combustivelService.GetAllCombustiveisByDescricaoAsync(descricao);
+                if (combustiveis == null) return NotFound("Combustiveis por descricao não encontrado.");
+                return Ok(combustiveis);
+            }
+            catch (System.Exception ex)
+            {
+                return this.StatusCode(StatusCodes.Status500InternalServerError, $"Erro ao tentar recuparar combustiveis por descricao. Erro {ex.Message}");
+            }
         }
 
         [HttpPost]
-        public string Post()
+        public async Task<IActionResult> Post(Combustivel model)
         {
-            return "Exemplo de Post";
+            try
+            {
+                var combustivel = await _combustivelService.AddCombustivel(model);
+                if (combustivel == null) return BadRequest("Erro ao tentar adicionar combustivel.");
+                return Ok(combustivel);
+            }
+            catch (System.Exception ex)
+            {
+                return this.StatusCode(StatusCodes.Status500InternalServerError, $"Erro ao tentar adicionar combustivel. Erro {ex.Message}");
+            }
         }
 
-        [HttpPut("{id}")]
-        public string Put(int id)
+        [HttpPut("{idCombustivel}")]
+        public async Task<IActionResult> Put(int idCombustivel, Combustivel model)
         {
-            return $"Exemplo de Put com id = {id}";
+            try
+            {
+                var combustivel = await _combustivelService.UpdateCombustivel(idCombustivel, model);
+                if (combustivel == null) return BadRequest("Erro ao tentar atualizar combustivel.");
+                return Ok(combustivel);
+            }
+            catch (System.Exception ex)
+            {
+                return this.StatusCode(StatusCodes.Status500InternalServerError, $"Erro ao tentar atualizar combustivel. Erro {ex.Message}");
+            }
         }
 
-        [HttpDelete("{id}")]
-        public string Delete(int id)
+        [HttpDelete("{idCombustivel}")]
+        public async Task<IActionResult> Delete(int idCombustivel)
         {
-            return $"Exemplo de Delete com id = {id}";
+            try
+            {
+                var combustivel = await _combustivelService.GetCombustiveisByIdAsync(idCombustivel);
+                if (combustivel == null) return NoContent();
+
+                if (await _combustivelService.DeleteCombustivel(idCombustivel))
+                    return Ok(new { message = "Deletado" });
+                else
+                    throw new Exception("Ocorreu um problem não específico ao tentar deletar combustivel.");
+            }
+            catch (System.Exception ex)
+            {
+                return this.StatusCode(StatusCodes.Status500InternalServerError, $"Erro ao tentar excluir combustivel. Erro {ex.Message}");
+            }
         }
     }
 }
