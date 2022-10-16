@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace UCarLink.Domain
 {
@@ -14,7 +15,7 @@ namespace UCarLink.Domain
         public string Nome { get; set; }
         [Required]
         public string Usuario { get; set; }
-        [Required]
-        public Loja Loja { get; set; } = new Loja();
+        [ForeignKey("Loja")]
+        public int LojaIdLoja { get; set; }   
     }
 }
