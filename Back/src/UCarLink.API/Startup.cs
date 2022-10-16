@@ -41,6 +41,8 @@ namespace UCarLink.API
             services.AddScoped<IIntencaoPersist, IntencaoPersist>();
             services.AddScoped<ICombustivelService, CombustivelService>();
             services.AddScoped<ICombustivelPersist, CombustivelPersist>();
+            services.AddScoped<IConfiguracaoService, ConfiguracaoService>();
+            services.AddScoped<IConfiguracaoPersist, ConfiguracaoPersist>();
             services.AddCors();
             services.AddSwaggerGen(c =>
             {
