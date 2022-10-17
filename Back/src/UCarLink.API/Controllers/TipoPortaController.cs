@@ -1,8 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
 using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using UCarLink.Application.Contratos;
 using UCarLink.Domain;
-using UCarLink.Persistence.Contextos;
 
 namespace UCarLink.API.Controllers
 {
@@ -10,42 +12,105 @@ namespace UCarLink.API.Controllers
     [Route("api/[controller]")]
     public class TipoPortaController : ControllerBase
     {
-        private readonly UCarLinkContext _context;
+        private readonly ITipoPortaService _tipoPortaService;
 
-        public TipoPortaController(UCarLinkContext context)
+        public TipoPortaController(ITipoPortaService tipoPortaService)
         {
-            this._context = context;
-
+            this._tipoPortaService = tipoPortaService;
         }
 
         [HttpGet]
-        public IEnumerable<TipoPorta> Get()
+        public async Task<IActionResult> Get()
         {
-            return this._context.TiposPortas;
+            try
+            {
+                var tiposPorta = await _tipoPortaService.GetAllTiposPortaAsync();
+                if (!tiposPorta.Any()) return NotFound("Nenhum tipo de Porta encontrado.");
+                return Ok(tiposPorta);
+            }
+            catch (System.Exception ex)
+            {
+                return this.StatusCode(StatusCodes.Status500InternalServerError, $"Erro ao tentar recuparar tipos de porta. Erro {ex.Message}");
+            }
         }
-        
-        [HttpGet("{id}")]
-        public TipoPorta GetById(int id)
+
+        [HttpGet("{idTipoPorta}")]
+        public async Task<IActionResult> GetById(int idTipoPorta)
         {
-            return this._context.TiposPortas.Where(evento => evento.IdTipoPorta == id).FirstOrDefault();
+            try
+            {
+                var tipoPorta = await _tipoPortaService.GetTiposPortaByIdAsync(idTipoPorta);
+                if (tipoPorta == null) return NotFound("Tipo de Porta não encontrado.");
+                return Ok(tipoPorta);
+            }
+            catch (System.Exception ex)
+            {
+                return this.StatusCode(StatusCodes.Status500InternalServerError, $"Erro ao tentar recuparar tipo de porta. Erro {ex.Message}");
+            }
+        }
+
+        [HttpGet("{descricao}/descricao")]
+        public async Task<IActionResult> GetByDescricao(string descricao)
+        {
+            try
+            {
+                var tiposPorta = await _tipoPortaService.GetAllTiposPortaByDescricaoAsync(descricao);
+                if (tiposPorta == null) return NotFound("Tipos de Porta por descricao não encontrado.");
+                return Ok(tiposPorta);
+            }
+            catch (System.Exception ex)
+            {
+                return this.StatusCode(StatusCodes.Status500InternalServerError, $"Erro ao tentar recuparar tipos de porta por descricao. Erro {ex.Message}");
+            }
         }
 
         [HttpPost]
-        public string Post()
+        public async Task<IActionResult> Post(TipoPorta model)
         {
-            return "Exemplo de Post";
+            try
+            {
+                var tipoPorta = await _tipoPortaService.AddTipoPorta(model);
+                if (tipoPorta == null) return BadRequest("Erro ao tentar adicionar tipo de porta.");
+                return Ok(tipoPorta);
+            }
+            catch (System.Exception ex)
+            {
+                return this.StatusCode(StatusCodes.Status500InternalServerError, $"Erro ao tentar adicionar tipo de porta. Erro {ex.Message}");
+            }
         }
 
-        [HttpPut("{id}")]
-        public string Put(int id)
+        [HttpPut("{idTipoPorta}")]
+        public async Task<IActionResult> Put(int idTipoPorta, TipoPorta model)
         {
-            return $"Exemplo de Put com id = {id}";
+            try
+            {
+                var tipoPorta = await _tipoPortaService.UpdateTipoPorta(idTipoPorta, model);
+                if (tipoPorta == null) return BadRequest("Erro ao tentar atualizar tipo de porta.");
+                return Ok(tipoPorta);
+            }
+            catch (System.Exception ex)
+            {
+                return this.StatusCode(StatusCodes.Status500InternalServerError, $"Erro ao tentar atualizar tipo de Porta. Erro {ex.Message}");
+            }
         }
 
-        [HttpDelete("{id}")]
-        public string Delete(int id)
+        [HttpDelete("{idTipoPorta}")]
+        public async Task<IActionResult> Delete(int idTipoPorta)
         {
-            return $"Exemplo de Delete com id = {id}";
+            try
+            {
+                var tipoPorta = await _tipoPortaService.GetTiposPortaByIdAsync(idTipoPorta);
+                if (tipoPorta == null) return NoContent();
+
+                if (await _tipoPortaService.DeleteTipoPorta(idTipoPorta))
+                    return Ok(new { message = "Deletado" });
+                else
+                    throw new Exception("Ocorreu um problem não específico ao tentar deletar tipo de porta.");
+            }
+            catch (System.Exception ex)
+            {
+                return this.StatusCode(StatusCodes.Status500InternalServerError, $"Erro ao tentar excluir tipo de porta. Erro {ex.Message}");
+            }
         }
     }
 }
