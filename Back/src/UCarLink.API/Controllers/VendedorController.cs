@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using UCarLink.Application.Contratos;
+using UCarLink.Application.Dtos;
 using UCarLink.Domain;
 
 
@@ -111,6 +113,26 @@ namespace UCarLink.API.Controllers
             catch (System.Exception ex)
             {
                 return this.StatusCode(StatusCodes.Status500InternalServerError, $"Erro ao tentar excluir vendedor. Erro {ex.Message}");
+            }
+        }
+        
+        [HttpPost("Login")]
+        public async Task<IActionResult> Login(VendedorLoginDto userLogin)
+        {
+            try
+            {
+                var user = await _vendedorService.GetAllVendedoresByNomeAsync(userLogin.Username);
+                if (user == null) return Unauthorized("Usuário ou Senha está errado");
+
+                var result = await _vendedorService.CheckUserPasswordAsync(userLogin);
+                if (result == null) return Unauthorized();
+
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return this.StatusCode(StatusCodes.Status500InternalServerError,
+                    $"Erro ao tentar realizar Login. Erro: {ex.Message}");
             }
         }
     }

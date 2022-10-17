@@ -26,21 +26,22 @@ export class VendedorService {
   }
 
   getVendedor(): Observable<Vendedor> {
-    return this.http.get<Vendedor>(this.baseUrl + 'getVendedor').pipe(take(1));
+    return this.http.get<Vendedor>(this.baseUrl).pipe(take(1));
   }
 
-  updateVendedor(model: Vendedor): Observable<void> {
-    return this.http.put<Vendedor>(this.baseUrl + 'updateVendedor', model).pipe(
-      take(1),
-      map((vendedor: Vendedor) => {
-        this.setCurrentVendedor(vendedor);
-      }
-      )
-    )
+  getVendedorById(idVendedor: number): Observable<Vendedor> {
+    return this.http.get<Vendedor>(this.baseUrl + `${idVendedor}`).pipe(take(1));
   }
+
+  public put(vendedor: Vendedor): Observable<Vendedor> {
+    return this.http
+      .put<Vendedor>(`${this.baseUrl}${vendedor.idVendedor}`, vendedor)
+      .pipe(take(1));
+  }
+
 
   public register(model: any): Observable<void> {
-    return this.http.post<Vendedor>(this.baseUrl + 'register', model).pipe(
+    return this.http.post<Vendedor>(this.baseUrl, model).pipe(
       take(1),
       map((response: Vendedor) => {
         const vendedor = response;

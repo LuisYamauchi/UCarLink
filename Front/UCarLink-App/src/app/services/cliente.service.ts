@@ -10,7 +10,7 @@ import { AnyCatcher } from 'rxjs/internal/AnyCatcher';
   // { providedIn: 'root' }
 )
 export class ClienteService {
-  baseURL = environment.apiURL + 'api/clientes';
+  baseURL = environment.apiURL + 'api/Cliente';
 
   constructor(private http: HttpClient) { }
 

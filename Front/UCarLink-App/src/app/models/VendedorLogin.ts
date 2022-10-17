@@ -1,4 +1,4 @@
 export class VendedorLogin {
-  email!: string;
+  userName!: string;
   password!: string;
 }

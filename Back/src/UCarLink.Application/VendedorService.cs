@@ -2,6 +2,7 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 using UCarLink.Application.Contratos;
+using UCarLink.Application.Dtos;
 using UCarLink.Domain;
 using UCarLink.Persistence.Contratos;
 
@@ -117,6 +118,19 @@ namespace UCarLink.Application
            {
                 throw new Exception(ex.Message);
            }
+        }
+        public async Task<Vendedor> CheckUserPasswordAsync(VendedorLoginDto user)
+        {
+            try
+            {
+                var vendedores = await _vendedorPersist.GetAllVendedoresByNomeAsync(user.Username);
+                if(!vendedores.Any() || vendedores[0].Password != user.Password) return null;
+                return vendedores[0];
+            }
+            catch (System.Exception ex)
+            {
+                throw new Exception($"Erro ao tentar verificar password. Erro: {ex.Message}");
+            }
         }
     }
 }

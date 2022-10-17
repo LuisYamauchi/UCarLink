@@ -6,5 +6,5 @@ export interface Vendedor {
   usuario: string;
   email: string;
   password: string;
-  loja: Loja;
+  lojaIdLoja: Loja;
 }

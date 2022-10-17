@@ -1,3 +1,4 @@
+import { LojaService } from './services/loja.service';
 import { IntencaoService } from './services/intencao.service';
 import { HomeComponent } from './components/home/home.component';
 import { VendedorService } from './services/vendedor.service';
@@ -104,7 +105,7 @@ import { IntencaoListaComponent } from './components/intencao/intencao-lista/int
     }),
     NgxSpinnerModule
   ],
-  providers: [ClienteService, VendedorService, IntencaoService],
+  providers: [ClienteService, VendedorService, IntencaoService, LojaService],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })

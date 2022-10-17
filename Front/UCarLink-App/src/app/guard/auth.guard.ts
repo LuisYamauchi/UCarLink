@@ -13,11 +13,10 @@ export class AuthGuard implements CanActivate {
   ) { }
 
   canActivate(): boolean {
-    return true;
     if (localStorage.getItem('vendedor') !== null)
       return true;
 
-    this.toaster.info('Usuário não autenticado!');
+    this.toaster.info('Vendedor não autenticado!');
     this.router.navigate(['/user/login']);
     return false;
   }
