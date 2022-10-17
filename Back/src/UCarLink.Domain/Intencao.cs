@@ -18,7 +18,7 @@ namespace UCarLink.Domain
         public decimal ValorInicial { get; set; }
         public decimal ValorFinal { get; set; }
         public decimal ValorVeiculo { get; set; }
-        public DateTime DataCadastro { get; set; } = DateTime.Now;
+        public DateTime? DataCadastro { get; set; }
         public DateTime? DataVencimento { get; set; }
         [ForeignKey("Modelo")]
         public int ModeloIdModelo { get; set; }        

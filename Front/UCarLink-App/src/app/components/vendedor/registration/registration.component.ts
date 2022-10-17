@@ -1,3 +1,6 @@
+import { NgxSpinnerService } from 'ngx-spinner';
+import { LojaService } from './../../../services/loja.service';
+import { Loja } from './../../../models/Loja';
 import { ValidatorField } from './../../../helpers/ValidatorField';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
@@ -16,15 +19,19 @@ export class RegistrationComponent implements OnInit {
 
   vendedor = {} as Vendedor;
   form!: FormGroup;
+  public lojas: Loja[] = [];
 
   constructor(private fb: FormBuilder,
     private vendedorService: VendedorService,
+    private lojaService: LojaService,
     private router: Router,
-    private toaster: ToastrService) { }
+    private toaster: ToastrService,
+    private spinner: NgxSpinnerService) { }
 
   get f(): any { return this.form.controls; }
 
   ngOnInit(): void {
+    this.carregarLojas();
     this.validation();
   }
 
@@ -43,6 +50,7 @@ export class RegistrationComponent implements OnInit {
         [Validators.required, Validators.minLength(4)]
       ],
       confirmePassword: ['', Validators.required],
+      lojaIdLoja: ['', Validators.required],
     }, formOptions);
   }
 
@@ -53,5 +61,19 @@ export class RegistrationComponent implements OnInit {
       (error: any) => this.toaster.error(error.error)
     )
   }
-
+  public carregarLojas(): void {
+    this.spinner.show();
+    this.lojaService
+      .getLojas()
+      .subscribe(
+        (_lojas: Loja[]) => {
+          this.lojas = _lojas;
+        },
+        (error: any) => {
+          this.toaster.error('Erro ao tentar carregar lojas.', 'Erro!');
+          console.error(error);
+        }
+      )
+      .add(() => this.spinner.hide());
+  }
 }

@@ -52,7 +52,7 @@ export class VendedorService {
     );
   }
 
-  logout(): void {
+  public logout(): void {
     localStorage.removeItem('vendedor');
     //this.currentVendedorSource.next(null);
     this.currentVendedorSource.complete();

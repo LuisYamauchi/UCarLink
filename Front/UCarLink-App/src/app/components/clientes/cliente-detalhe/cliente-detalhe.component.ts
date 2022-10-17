@@ -218,11 +218,7 @@ export class ClienteDetalheComponent implements OnInit {
     this.spinner.show();
     if (this.form.valid) {
       if (this.estadoSalvar === 'post') {
-        this.cliente =
-          this.estadoSalvar === 'post'
-            ? { idCliente: 0, ...this.form.value }
-            : { idCliente: this.cliente.idCliente, ...this.form.value };
-
+        this.cliente = { idCliente: 0, ...this.form.value };
         this.clienteService.post(this.cliente).subscribe(
           (clienteRetorno: Cliente) => {
             this.toastr.success('Cliente salvo com Sucesso!', 'Sucesso');
@@ -237,11 +233,7 @@ export class ClienteDetalheComponent implements OnInit {
         );
       }
       else {
-        this.cliente =
-          this.estadoSalvar === 'post'
-            ? { idCliente: 0, ...this.form.value }
-            : { idCliente: this.cliente.idCliente, ...this.form.value };
-
+        this.cliente = { idCliente: this.cliente.idCliente, ...this.form.value };
         this.clienteService.put(this.cliente).subscribe(
           (clienteRetorno: Cliente) => {
             this.toastr.success('Cliente salvo com Sucesso!', 'Sucesso');

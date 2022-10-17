@@ -22,6 +22,9 @@ namespace UCarLink.Application
         {
             try
             {
+                if(!model.DataCadastro.HasValue)
+                model.DataCadastro = DateTime.Now;
+
                 _geralPersist.Add<Intencao>(model);
                 if(await _geralPersist.SaveChangesAsync())
                     return await _intencaoPersist.GetIntencoesByIdAsync(model.IdIntencao);

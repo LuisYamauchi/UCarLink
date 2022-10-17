@@ -1,3 +1,4 @@
+import { environment } from './../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
@@ -8,7 +9,7 @@ import { take } from 'rxjs/operators';
 
 @Injectable()
 export class IntencaoService {
-  baseURL = 'https://localhost:5001/api/intencoes';
+  baseURL = environment.apiURL + 'api/intencao';
 
   constructor(private http: HttpClient) {}
 

@@ -46,6 +46,11 @@ import { ClienteListaComponent } from './components/clientes/cliente-lista/clien
 import { PerfilComponent } from './components/vendedor/perfil/perfil.component';
 import { IntencaoDetalheComponent } from './components/intencao/intencao-detalhe/intencao-detalhe.component';
 import { IntencaoListaComponent } from './components/intencao/intencao-lista/intencao-lista.component';
+import { ModeloService } from './services/modelo.service';
+import { TipoVeiculoService } from './services/tipo-veiculo.service';
+import { TipoPortaService } from './services/tipo-porta.service';
+import { CombustivelService } from './services/combustivel.service';
+import { CorVeiculoService } from './services/cor-veiculo.service';
 
 @NgModule({
   declarations: [
@@ -105,7 +110,17 @@ import { IntencaoListaComponent } from './components/intencao/intencao-lista/int
     }),
     NgxSpinnerModule
   ],
-  providers: [ClienteService, VendedorService, IntencaoService, LojaService],
+  providers: [
+    ClienteService,
+    VendedorService,
+    IntencaoService,
+    LojaService,
+    ModeloService,
+    TipoVeiculoService,
+    TipoPortaService,
+    CombustivelService,
+    CorVeiculoService
+  ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })

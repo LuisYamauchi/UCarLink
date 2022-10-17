@@ -77,7 +77,7 @@ export class ClienteListaComponent implements OnInit {
         this.toastr.error('Erro ao Carregar os clientes', 'Erro!');
       }
     )
-    .add(() => this.spinner.hide());
+      .add(() => this.spinner.hide());
   }
 
   openModal(event: any, template: TemplateRef<any>, idCliente: number): void {
@@ -117,7 +117,7 @@ export class ClienteListaComponent implements OnInit {
     this.modalRef.hide();
   }
 
-  detalheCliente(idClient: number){
+  detalheCliente(idClient: number) {
     this.router.navigate([`clientes/detalhe/${idClient}`])
   }
 

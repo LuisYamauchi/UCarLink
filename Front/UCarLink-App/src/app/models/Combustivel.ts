@@ -1,4 +1,4 @@
 export interface Combustivel {
-  iIdCombustivel: number;
-  dDescricao: string;
+  idCombustivel: number;
+  descricao: string;
 }

@@ -19,7 +19,9 @@ export class LoginComponent implements OnInit {
     private toaster: ToastrService
   ) { }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    this.logout();
+  }
 
   public login(): void {
     this.vendedorService.login(this.model).subscribe(
@@ -32,5 +34,8 @@ export class LoginComponent implements OnInit {
         else console.error(error);
       }
     );
+  }
+  logout(){
+    this.vendedorService.logout();
   }
 }

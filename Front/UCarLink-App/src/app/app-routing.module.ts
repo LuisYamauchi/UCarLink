@@ -47,7 +47,7 @@ const routes: Routes = [
     {
       path: 'intencao', component: IntencaoComponent,
       children: [
-        { path: 'detalhe/:idIntecao', component: IntencaoDetalheComponent },
+        { path: 'detalhe/:idIntencao', component: IntencaoDetalheComponent },
         { path: 'detalhe', component: IntencaoDetalheComponent },
         { path: 'lista', component: IntencaoListaComponent }
       ]

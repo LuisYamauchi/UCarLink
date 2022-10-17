@@ -1,29 +1,21 @@
-import { Cliente } from "./Cliente";
-import { Combustivel } from "./Combustivel";
-import { CorVeiculo } from "./CorVeiculo";
-import { Modelo } from "./Modelo";
-import { TipoPorta } from "./TipoPorta";
-import { TipoVeiculo } from "./TipoVeiculo";
-import { Vendedor } from "./Vendedor";
-
 export interface Intencao {
   idIntencao: number;
-  cliente: Cliente;
+  clienteIdCliente: number;
   compraVenda: number;
-  vendedorInclusao: Vendedor;
-  vendedorNegociacao: Vendedor;
+  vendedorInclusaoIdVendedor: number;
+  vendedorNegociacaoIdVendedor: number;
   valorInicial: number;
   valorFinal: number;
   valorVeiculo: number;
   dataCadastro: Date;
   dataVencimento?: Date;
-  modelo: Modelo;
+  modeloIdModelo: number;
   anoInicial?: number;
   anoFinal?: number;
-  tipoVeiculo: TipoVeiculo;
-  tipoPorta: TipoPorta;
-  combustivel: Combustivel;
-  corVeiculo: CorVeiculo;
+  tipoVeiculoIdTipoVeiculo: number;
+  tipoPortaIdTipoPorta: number;
+  combustivelIdCombustivel: number;
+  corVeiculoIdCorVeiculo: number;
   cambio: string;
   arCondicionado: string;
   vidroEletrico: string;
@@ -33,4 +25,12 @@ export interface Intencao {
   direcaoEletrica: string;
   kmInicial: number;
   kmFinal: number;
+}
+export interface TipoIntencao {
+  id: number;
+  descricao: string;
+}
+export interface TipoCambio {
+  id: string;
+  descricao: string;
 }

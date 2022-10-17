@@ -51,20 +51,25 @@
     </div>
     <div class="card-footer">
       <div class="d-flex">
-        <button class="btn btn-outline-secondary mr-auto border" (click)="resetForm()">
+        <button
+          class="btn btn-outline-secondary mr-auto border"
+          (click)="resetForm()"
+        >
           Cancelar Alteração
         </button>
-        <button class="btn btn-success" [disabled]="!form.valid" (click)="salvarCliente()">
-          <!-- <span class="spinner-border spinner-border-sm mr-1"></span> -->
-          Salvar Evento
+        <button
+          class="btn btn-success"
+          [disabled]="!form.valid"
+          (click)="salvarCliente()"
+        >
+          Salvar
         </button>
       </div>
     </div>
   </form>
 </div>
 
-
-    <!-- <div class="card rounded shadow-sm mt-3" *ngIf="modoEditar">
+<!-- <div class="card rounded shadow-sm mt-3" *ngIf="modoEditar">
       <div class="p-3">
         <div class="d-flex border-bottom">
           <h2 class="mr-auto">
