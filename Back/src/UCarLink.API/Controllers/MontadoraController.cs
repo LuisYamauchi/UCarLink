@@ -1,8 +1,11 @@
-using System.Collections.Generic;
+using System;
 using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using UCarLink.Application;
+using UCarLink.Application.Contratos;
 using UCarLink.Domain;
-using UCarLink.Persistence.Contextos;
 
 namespace UCarLink.API.Controllers
 {
@@ -10,42 +13,105 @@ namespace UCarLink.API.Controllers
     [Route("api/[controller]")]
     public class MontadoraController : ControllerBase
     {
-        private readonly UCarLinkContext _context;
+        private readonly IMontadoraService _montadoraService;
 
-        public MontadoraController(UCarLinkContext context)
+        public MontadoraController(IMontadoraService montadoraService)
         {
-            this._context = context;
-
+            this._montadoraService = montadoraService;
         }
 
         [HttpGet]
-        public IEnumerable<Montadora> Get()
+        public async Task<IActionResult> Get()
         {
-            return this._context.Montadoras;
+            try
+            {
+                var montadoras = await _montadoraService.GetAllMontadorasAsync();
+                if (!montadoras.Any()) return NotFound("Nenhuma montadora encontrada.");
+                return Ok(montadoras);
+            }
+            catch (System.Exception ex)
+            {
+                return this.StatusCode(StatusCodes.Status500InternalServerError, $"Erro ao tentar recuparar Montadoras. Erro {ex.Message}");
+            }
         }
 
-        [HttpGet("{id}")]
-        public Montadora GetById(int id)
+        [HttpGet("{idMontadora}")]
+        public async Task<IActionResult> GetById(int idMontadora)
         {
-            return this._context.Montadoras.Where(evento => evento.IdMontadora == id).FirstOrDefault();
+            try
+            {
+                var montadora = await _montadoraService.GetMontadorasByIdAsync(idMontadora);
+                if (montadora == null) return NotFound("Montadora não encontrada.");
+                return Ok(montadora);
+            }
+            catch (System.Exception ex)
+            {
+                return this.StatusCode(StatusCodes.Status500InternalServerError, $"Erro ao tentar recuparar montadora. Erro {ex.Message}");
+            }
+        }
+
+        [HttpGet("{descricao}/descricao")]
+        public async Task<IActionResult> GetByDescricao(string descricao)
+        {
+            try
+            {
+                var montadora = await _montadoraService.GetAllMontadorasByDescricaoAsync(descricao);
+                if (montadora == null) return NotFound("Montadora por descricao não encontrada.");
+                return Ok(montadora);
+            }
+            catch (System.Exception ex)
+            {
+                return this.StatusCode(StatusCodes.Status500InternalServerError, $"Erro ao tentar recuparar montadoras por descricao. Erro {ex.Message}");
+            }
         }
 
         [HttpPost]
-        public string Post()
+        public async Task<IActionResult> Post(Montadora model)
         {
-            return "Exemplo de Post";
+            try
+            {
+                var montadora = await _montadoraService.AddMontadora(model);
+                if (montadora == null) return BadRequest("Erro ao tentar adicionar montadora.");
+                return Ok(montadora);
+            }
+            catch (System.Exception ex)
+            {
+                return this.StatusCode(StatusCodes.Status500InternalServerError, $"Erro ao tentar adicionar montadora. Erro {ex.Message}");
+            }
         }
 
-        [HttpPut("{id}")]
-        public string Put(int id)
+        [HttpPut("{idMontadora}")]
+        public async Task<IActionResult> Put(int idMontadora, Montadora model)
         {
-            return $"Exemplo de Put com id = {id}";
+            try
+            {
+                var montadora = await _montadoraService.UpdateMontadora(idMontadora, model);
+                if (montadora == null) return BadRequest("Erro ao tentar atualizar montadora.");
+                return Ok(montadora);
+            }
+            catch (System.Exception ex)
+            {
+                return this.StatusCode(StatusCodes.Status500InternalServerError, $"Erro ao tentar atualizar montadora. Erro {ex.Message}");
+            }
         }
 
-        [HttpDelete("{id}")]
-        public string Delete(int id)
+        [HttpDelete("{idMontadora}")]
+        public async Task<IActionResult> Delete(int idMontadora)
         {
-            return $"Exemplo de Delete com id = {id}";
+            try
+            {
+                var montadora = await _montadoraService.GetMontadorasByIdAsync(idMontadora);
+                if (montadora == null) return NoContent();
+
+                if (await _montadoraService.DeleteMontadora(idMontadora))
+                    return Ok(new { message = "Deletado" });
+                else
+                    throw new Exception("Ocorreu um problema não específico ao tentar deletar montadora.");
+            }
+            catch (System.Exception ex)
+            {
+                return this.StatusCode(StatusCodes.Status500InternalServerError, $"Erro ao tentar excluir montadora. Erro {ex.Message}");
+            }
         }
     }
 }
