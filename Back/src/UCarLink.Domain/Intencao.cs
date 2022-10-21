@@ -9,7 +9,8 @@ namespace UCarLink.Domain
         [Key]
         public int IdIntencao { get; set; }
         [ForeignKey("Cliente")]
-        public int ClienteIdCliente { get; set; }        
+        public int ClienteIdCliente { get; set; }
+        //0-Compra 1-Venda
         public int CompraVenda { get; set; }
         [ForeignKey("Vendedor")]
         public int VendedorInclusaoIdVendedor { get; set; }

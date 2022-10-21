@@ -53,6 +53,8 @@ namespace UCarLink.API
             services.AddScoped<ITipoPortaPersist, TipoPortaPersist>();
             services.AddScoped<ITipoVeiculoService, TipoVeiculoService>();
             services.AddScoped<ITipoVeiculoPersist, TipoVeiculoPersist>();
+            services.AddScoped<IConsultaService, ConsultaService>();
+            services.AddScoped<IConsultaPersist, ConsultaPersist>();
             services.AddCors();
             services.AddSwaggerGen(c =>
             {
