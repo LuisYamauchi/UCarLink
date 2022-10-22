@@ -35,7 +35,6 @@ const routes: Routes = [
         { path: 'perfil', component: PerfilComponent },
       ]
     },
-    // { path: 'clientes', redirectTo: 'clientes/lista' },
     {
       path: 'clientes', component: ClientesComponent,
       children: [
@@ -56,7 +55,6 @@ const routes: Routes = [
     { path: 'configuracao', component: ConfiguracaoComponent },
     { path: 'corVeiculo', component: CorVeiculoComponent },
     { path: 'dashboard', component: DashboardComponent },
-    { path: 'intencao', component: IntencaoComponent },
     { path: 'loja', component: LojaComponent },
     { path: 'modelo', component: ModeloComponent },
     { path: 'montadora', component: MontadoraComponent },
