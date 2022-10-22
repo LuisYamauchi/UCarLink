@@ -6,7 +6,7 @@ namespace UCarLink.Domain
     {
         //0-Compra 1-Venda
         public int CompraVenda { get; set; }        
-        public int LojaIdLoja { get; set; }      
+        public int IdLoja { get; set; }      
         public decimal ValorBuscaInicial { get; set; }
         public decimal ValorBuscaFinal { get; set; }   
         public DateTime? DataCadastro { get; set; }
