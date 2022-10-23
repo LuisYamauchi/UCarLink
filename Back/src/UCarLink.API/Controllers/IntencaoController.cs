@@ -33,6 +33,22 @@ namespace UCarLink.API.Controllers
                 return this.StatusCode(StatusCodes.Status500InternalServerError, $"Erro ao tentar recuparar intencoes. Erro {ex.Message}");
             }
         }
+        
+        [HttpGet("Detalhes")]
+        public async Task<IActionResult> GetIntencoesDetalhes()
+        {
+            try
+            {
+                var intencoes = await _intencaoService.GetAllIntencoesDetalhesAsync();
+                if (!intencoes.Any()) return NotFound("Nenhuma intenção de compra ou venda encontrada.");
+                return Ok(intencoes);
+            }
+            catch (System.Exception ex)
+            {
+                return this.StatusCode(StatusCodes.Status500InternalServerError, $"Erro ao tentar recuparar intencoes. Erro {ex.Message}");
+            }
+        }
+
 
         [HttpGet("{idIntencao}")]
         public async Task<IActionResult> GetById(int idIntencao)
