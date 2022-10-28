@@ -2,7 +2,7 @@ import { environment } from './../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
-import { Intencao } from '@app/models/Intencao';
+import { Intencao, IntencaoDetalhes } from '@app/models/Intencao';
 
 import { Observable } from 'rxjs';
 import { take } from 'rxjs/operators';
@@ -19,6 +19,10 @@ export class IntencaoService {
 
   public getIntencoes(): Observable<Intencao[]> {
     return this.http.get<Intencao[]>(`${this.baseURL}`).pipe(take(1));
+  }
+
+  public getIntencoesDetalhes(): Observable<IntencaoDetalhes[]> {
+    return this.http.get<IntencaoDetalhes[]>(`${this.baseURL}/detalhes`).pipe(take(1));
   }
 
   public saveIntencao(idIntencao: number, Intencoes: Intencao[]): Observable<Intencao[]> {

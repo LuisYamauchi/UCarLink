@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using UCarLink.Application.Dtos;
 using UCarLink.Domain;
 
+
 namespace UCarLink.Application.Contratos
 {
     public interface IIntencaoService

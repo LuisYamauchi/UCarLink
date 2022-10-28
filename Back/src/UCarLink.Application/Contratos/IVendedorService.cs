@@ -1,9 +1,5 @@
 using System.Threading.Tasks;
 using UCarLink.Domain;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using Microsoft.EntityFrameworkCore;
 using UCarLink.Application.Dtos;
 
 namespace UCarLink.Application.Contratos

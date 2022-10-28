@@ -2,8 +2,8 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 using UCarLink.Application.Contratos;
-using UCarLink.Application.Dtos;
 using UCarLink.Domain;
+using UCarLink.Application.Dtos;
 using UCarLink.Persistence.Contratos;
 
 namespace UCarLink.Application

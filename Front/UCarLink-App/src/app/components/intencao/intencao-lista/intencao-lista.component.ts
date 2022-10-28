@@ -1,12 +1,12 @@
 import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
-import { IntencaoService } from './../../../services/intencao.service';
 import { Subject } from 'rxjs';
-import { Pagination } from './../../../models/Pagination';
-import { Intencao } from './../../../models/Intencao';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { Component, OnInit, TemplateRef } from '@angular/core';
+import { IntencaoDetalhes } from '@app/models/Intencao';
+import { Pagination } from '@app/models/Pagination';
+import { IntencaoService } from '@app/services/intencao.service';
 
 @Component({
   selector: 'app-intencao-lista',
@@ -16,10 +16,10 @@ import { Component, OnInit, TemplateRef } from '@angular/core';
 export class IntencaoListaComponent implements OnInit {
 
   modalRef!: BsModalRef;
-  public intencoes: Intencao[] = [];
+  public intencoes: IntencaoDetalhes[] = [];
   public idIntencao = 0;
   public pagination = {} as Pagination;
-  public intencoesFiltradas: Intencao[] = [];
+  public intencoesFiltradas: IntencaoDetalhes[] = [];
   private _filtroLista: string = '';
   public idCliente = 0;
 
@@ -34,11 +34,16 @@ export class IntencaoListaComponent implements OnInit {
     this.intencoesFiltradas = (this.filtroLista ? this.filtrarIntencoes(this.filtroLista) : this.intencoes)
   }
 
-  public filtrarIntencoes(filtrarPor: string): Intencao[] {
+  public filtrarIntencoes(filtrarPor: string): IntencaoDetalhes[] {
     filtrarPor = filtrarPor.toLocaleLowerCase();
     return this.intencoes.filter(
-      (Intencao: any) => Intencao.Cliente.nome.toLocaleLowerCase().indexOf(filtrarPor) !== -1 ||
-        Intencao.Cliente.telefone.toLocaleLowerCase().indexOf(filtrarPor) !== -1
+      (Intencao: IntencaoDetalhes) => Intencao.clienteNome.toLocaleLowerCase().indexOf(filtrarPor) !== -1 ||
+      Intencao.modeloDescricao.toLocaleLowerCase().indexOf(filtrarPor) !== -1||
+      Intencao.tipoPortaDescricao.toLocaleLowerCase().indexOf(filtrarPor) !== -1||
+      Intencao.vendedorInclusaoNome.toLocaleLowerCase().indexOf(filtrarPor) !== -1||
+      Intencao.tipoVeiculoDescricao.toLocaleLowerCase().indexOf(filtrarPor) !== -1||
+      Intencao.combustivelDescricao.toLocaleLowerCase().indexOf(filtrarPor) !== -1||
+      Intencao.corVeiculoDescricao.toLocaleLowerCase().indexOf(filtrarPor) !== -1
     )
   }
 
@@ -55,8 +60,8 @@ export class IntencaoListaComponent implements OnInit {
 
   public getintencoes(): void {
     this.spinner.show();
-    this.intencaoService.getIntencoes().subscribe(
-      (_intencoes: Intencao[]) => {
+    this.intencaoService.getIntencoesDetalhes().subscribe(
+      (_intencoes: IntencaoDetalhes[]) => {
         this.intencoes = _intencoes;
         this.intencoesFiltradas = this.intencoes;
       },

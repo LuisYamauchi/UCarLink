@@ -1,13 +1,11 @@
 ﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using UCarLink.Application.Contratos;
 using UCarLink.Application.Dtos;
 using UCarLink.Domain;
-
 
 namespace UCarLink.API.Controllers
 {

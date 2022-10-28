@@ -5,7 +5,6 @@ using UCarLink.Persistence.Contextos;
 using UCarLink.Persistence.Contratos;
 using UCarLink.Domain;
 using UCarLink.Persistence.Extensions;
-using System.Diagnostics;
 using System;
 
 namespace UCarLink.Persistence

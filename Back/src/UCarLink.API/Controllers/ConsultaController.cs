@@ -34,6 +34,20 @@ namespace UCarLink.API.Controllers
             }
         }
 
+        [HttpGet("Detalhes")]
+        public async Task<IActionResult> GetConsultaIntencoesDetalhesByFiltros([FromQuery]Consulta model)
+        {
+            try
+            {
+                var intencoes = await _consultaService.GetConsultaIntencoesDetalhesByFiltros(model);
+                if (!intencoes.Any()) return NotFound("Nenhuma intenção encontrada com os filtros informados!");
+                return Ok(intencoes);
+            }
+            catch (System.Exception ex)
+            {
+                return this.StatusCode(StatusCodes.Status500InternalServerError, $"Erro ao tentar consultar intenções com os filtros informados. Erro {ex.Message}");
+            }
+        }
 
         /*  [HttpPut("{idIntencao}")]
           public async Task<IActionResult> Put(int idIntencao, Intencao model)

@@ -34,3 +34,15 @@ export interface TipoCambio {
   id: string;
   descricao: string;
 }
+
+export interface IntencaoDetalhes extends Intencao
+{
+    clienteNome: string;
+    vendedorInclusaoNome: string;
+    vendedorNegociacaoNome: string;
+    modeloDescricao: string;
+    tipoVeiculoDescricao: string;
+    tipoPortaDescricao: string;
+    combustivelDescricao: string;
+    corVeiculoDescricao: string;
+}

@@ -8,7 +8,7 @@
         <input
           type="text"
           class="form-control"
-          placeholder="Filtar por Nome e Telefone"
+          placeholder="Filtar por cliente, vendedor, modelo, cor, tipo veículo, tipo porta, combustível e cor"
           [(ngModel)]="filtroLista"
         />
       </div>
@@ -28,14 +28,14 @@
         <th class="d-none d-md-table-cell">Ven.</th>
         <th class="d-none d-md-table-cell">Val. I.</th>
         <th class="d-none d-md-table-cell">Val. F.</th>
-        <!-- <th class="d-none d-md-table-cell">Ven.</th>
         <th class="d-none d-md-table-cell">Modelo</th>
-        <th class="d-none d-md-table-cell">Ano I.</th>
-        <th class="d-none d-md-table-cell">Ano F.</th>
         <th class="d-none d-md-table-cell">Tipo V.</th>
         <th class="d-none d-md-table-cell">Tipo P.</th>
         <th class="d-none d-md-table-cell">Com.</th>
         <th class="d-none d-md-table-cell">Cor</th>
+        <!-- <th class="d-none d-md-table-cell">Ven.</th>
+        <th class="d-none d-md-table-cell">Ano I.</th>
+        <th class="d-none d-md-table-cell">Ano F.</th>
         <th class="d-none d-md-table-cell">Cambio</th> -->
         <th class="d-none d-md-table-cell">Ar</th>
         <th class="d-none d-md-table-cell">Vidro</th>
@@ -55,18 +55,18 @@
         style="cursor: pointer"
       >
         <td>{{ intencao.idIntencao }}</td>
-        <td class="d-none d-md-table-cell">{{ intencao.clienteIdCliente }}</td>
-        <td class="d-none d-md-table-cell">{{ intencao.vendedorInclusaoIdVendedor }}</td>
+        <td class="d-none d-md-table-cell">{{ intencao.clienteNome }}</td>
+        <td class="d-none d-md-table-cell">{{ intencao.vendedorInclusaoNome }}</td>
         <td class="d-none d-md-table-cell">{{ intencao.valorInicial }}</td>
         <td class="d-none d-md-table-cell">{{ intencao.valorFinal }}</td>
+        <td class="d-none d-md-table-cell">{{ intencao.modeloDescricao }}</td>
+        <td class="d-none d-md-table-cell">{{ intencao.tipoVeiculoDescricao }}</td>
+        <td class="d-none d-md-table-cell">{{ intencao.tipoPortaDescricao }}</td>
+        <td class="d-none d-md-table-cell">{{ intencao.combustivelDescricao }}</td>
+        <td class="d-none d-md-table-cell">{{ intencao.corVeiculoDescricao }}</td>
         <!-- <td class="d-none d-md-table-cell">{{ intencao.dataVencimento }}</td>
-        <td class="d-none d-md-table-cell">{{ intencao.modeloIdModelo }}</td>
         <td class="d-none d-md-table-cell">{{ intencao.anoInicial }}</td>
         <td class="d-none d-md-table-cell">{{ intencao.anoFinal }}</td>
-        <td class="d-none d-md-table-cell">{{ intencao.tipoVeiculoIdTipoVeiculo }}</td>
-        <td class="d-none d-md-table-cell">{{ intencao.tipoPortaIdTipoPorta }}</td>
-        <td class="d-none d-md-table-cell">{{ intencao.combustivelIdCombustivel }}</td>
-        <td class="d-none d-md-table-cell">{{ intencao.corVeiculoIdCorVeiculo }}</td>
         <td class="d-none d-md-table-cell">{{ intencao.cambio }}</td> -->
         <td class="d-none d-md-table-cell">{{ intencao.arCondicionado }}</td>
         <td class="d-none d-md-table-cell">{{ intencao.vidroEletrico }}</td>
