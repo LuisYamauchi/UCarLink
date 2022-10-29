@@ -153,7 +153,8 @@ namespace UCarLink.Application
                         Som = intencao.Som,
                         DirecaoEletrica = intencao.DirecaoEletrica,
                         KmInicial = intencao.KmInicial,
-                        KmFinal = intencao.KmFinal
+                        KmFinal = intencao.KmFinal,
+                        KmAtual = intencao.KmAtual
                     };
                     result.Add(intencaoDetalhes);
 

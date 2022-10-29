@@ -39,8 +39,9 @@ namespace UCarLink.Persistence
 
             IQueryable<Intencao> query = _context.Intencoes;
             query = query.AsNoTracking().WhereIf(model.IdLoja > 0, l => idVendedoresDaLoja.Contains(l.VendedorInclusaoIdVendedor))
-                                        .WhereIf(model.CompraVenda == 1, l => l.ValorVeiculo >= model.ValorBuscaInicial 
-                                                                          && l.ValorVeiculo <= model.ValorBuscaFinal)
+                                         //Compra = 0, Venda = 1
+                                        .WhereIf(model.ValorBuscaInicial > 0, l => l.ValorVeiculo >= model.ValorBuscaInicial 
+                                                                                && l.ValorVeiculo <= model.ValorBuscaFinal)                                     
                                         .WhereIf(model.DataCadastro != null, l => l.DataCadastro == model.DataCadastro)
                                         .WhereIf(model.DataVencimento != null, l => l.DataVencimento == model.DataVencimento)
                                         .WhereIf(model.IdModelo > 0, l => l.ModeloIdModelo == model.IdModelo)
@@ -56,16 +57,11 @@ namespace UCarLink.Persistence
                                         .WhereIf(model.Alarme?.Length > 0, l => l.Alarme.ToUpper().Contains(model.Alarme.ToUpper()))
                                         .WhereIf(model.Som?.Length > 0, l => l.Som.ToUpper().Contains(model.Som.ToUpper()))
                                         .WhereIf(model.DirecaoEletrica?.Length > 0, l => l.DirecaoEletrica.ToUpper().Contains(model.DirecaoEletrica.ToUpper()))
-                                        .WhereIf(model.KmBuscaInicial > 0, l => l.KmInicial >= model.KmBuscaInicial)
-                                        .WhereIf(model.KmBuscaFinal > 0, l => l.KmFinal <= model.KmBuscaFinal)
+                                        .WhereIf(model.CompraVenda == 1 && model.KmBuscaInicial > 0, l => l.KmInicial >= model.KmBuscaInicial)
+                                        .WhereIf(model.CompraVenda == 1 && model.KmBuscaFinal > 0, l => l.KmFinal <= model.KmBuscaFinal)
                                         ; 
 
-            return await query.ToArrayAsync();
-
-            /*IQueryable<Intencao> query = _context.Intencoes;
-            query = query.AsNoTracking().OrderBy(c => c.DataCadastro).Where(c => c.IdIntencao == IdIntencao);
-
-            return await query.FirstOrDefaultAsync();*/
+            return await query.ToArrayAsync();           
         }
     }
 }

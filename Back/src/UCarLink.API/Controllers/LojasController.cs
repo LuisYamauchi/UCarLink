@@ -25,7 +25,7 @@ namespace UCarLink.API.Controllers
             try
             {
                 var lojas = await _lojaService.GetAllLojasAsync();
-                if (!lojas.Any()) return NotFound("Nenhuma loja encontrada.");
+                if (lojas == null) return NotFound("Nenhuma loja encontrada.");
                 return Ok(lojas);
             }
             catch (System.Exception ex)

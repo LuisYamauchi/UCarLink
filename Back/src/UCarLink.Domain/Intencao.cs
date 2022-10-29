@@ -41,5 +41,6 @@ namespace UCarLink.Domain
         public string DirecaoEletrica { get; set; }
         public decimal KmInicial { get; set; }
         public decimal KmFinal { get; set; }
+        public decimal KmAtual { get; set; }
     }
 }

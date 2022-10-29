@@ -25,7 +25,7 @@ namespace UCarLink.API.Controllers
             try
             {
                 var clientes = await _clienteService.GetAllClientesAsync();
-                if (!clientes.Any()) return NotFound("Nenhum cliente encontrado.");
+                if (clientes == null) return NotFound("Nenhum cliente encontrado.");
                 return Ok(clientes);
             }
             catch (System.Exception ex)

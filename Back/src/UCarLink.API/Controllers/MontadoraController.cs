@@ -26,7 +26,7 @@ namespace UCarLink.API.Controllers
             try
             {
                 var montadoras = await _montadoraService.GetAllMontadorasAsync();
-                if (!montadoras.Any()) return NotFound("Nenhuma montadora encontrada.");
+                if (montadoras == null) return NotFound("Nenhuma montadora encontrada.");
                 return Ok(montadoras);
             }
             catch (System.Exception ex)

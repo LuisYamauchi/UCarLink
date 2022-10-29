@@ -26,7 +26,7 @@ namespace UCarLink.API.Controllers
             try
             {
                 var vendedores = await _vendedorService.GetAllVendedoresAsync();
-                if (!vendedores.Any()) return NotFound("Nenhum vendedor encontrado.");
+                if (vendedores == null) return NotFound("Nenhum vendedor encontrado.");
                 return Ok(vendedores);
             }
             catch (System.Exception ex)

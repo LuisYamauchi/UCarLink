@@ -26,7 +26,7 @@ namespace UCarLink.API.Controllers
             try
             {
                 var coresVeiculo = await _corVeiculoService.GetAllCoresVeiculoAsync();
-                if (!coresVeiculo.Any()) return NotFound("Nenhuma cor de Veiculo encontrada.");
+                if (coresVeiculo == null) return NotFound("Nenhuma cor de Veiculo encontrada.");
                 return Ok(coresVeiculo);
             }
             catch (System.Exception ex)

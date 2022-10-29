@@ -25,7 +25,7 @@ namespace UCarLink.API.Controllers
             try
             {
                 var combustiveis = await _combustivelService.GetAllCombustiveisAsync();
-                if (!combustiveis.Any()) return NotFound("Nenhum Combustivel encontrado.");
+                if (combustiveis == null) return NotFound("Nenhum Combustivel encontrado.");
                 return Ok(combustiveis);
             }
             catch (System.Exception ex)

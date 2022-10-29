@@ -26,6 +26,6 @@ namespace UCarLink.Domain
         public string Som { get; set; }
         public string DirecaoEletrica { get; set; }
         public decimal KmBuscaInicial { get; set; }
-        public decimal KmBuscaFinal { get; set; }
+        public decimal KmBuscaFinal { get; set; }        
     }
 }

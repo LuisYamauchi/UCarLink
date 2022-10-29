@@ -26,7 +26,7 @@ namespace UCarLink.API.Controllers
             try
             {
                 var tiposVeiculoService = await _tipoVeiculoService.GetAllTiposVeiculoAsync();
-                if (!tiposVeiculoService.Any()) return NotFound("Nenhum tipo de veiculo encontrado.");
+                if (tiposVeiculoService == null) return NotFound("Nenhum tipo de veiculo encontrado.");
                 return Ok(tiposVeiculoService);
             }
             catch (System.Exception ex)

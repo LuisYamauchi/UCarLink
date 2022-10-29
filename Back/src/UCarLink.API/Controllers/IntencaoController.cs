@@ -25,7 +25,7 @@ namespace UCarLink.API.Controllers
             try
             {
                 var intencoes = await _intencaoService.GetAllIntencoesAsync();
-                if (!intencoes.Any()) return NotFound("Nenhuma intenção de compra ou venda encontrada.");
+                if (intencoes == null) return NotFound("Nenhuma intenção de compra ou venda encontrada.");
                 return Ok(intencoes);
             }
             catch (System.Exception ex)
@@ -40,7 +40,7 @@ namespace UCarLink.API.Controllers
             try
             {
                 var intencoes = await _intencaoService.GetAllIntencoesDetalhesAsync();
-                if (!intencoes.Any()) return NotFound("Nenhuma intenção de compra ou venda encontrada.");
+                if (intencoes == null) return NotFound("Nenhuma intenção de compra ou venda encontrada.");
                 return Ok(intencoes);
             }
             catch (System.Exception ex)

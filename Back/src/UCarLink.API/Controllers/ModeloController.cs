@@ -26,7 +26,7 @@ namespace UCarLink.API.Controllers
             try
             {
                 var modelos = await _modeloService.GetAllModelosAsync();
-                if (!modelos.Any()) return NotFound("Nenhum modelo encontrado.");
+                if (modelos == null) return NotFound("Nenhum modelo encontrado.");
                 return Ok(modelos);
             }
             catch (System.Exception ex)

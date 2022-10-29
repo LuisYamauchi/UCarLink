@@ -25,7 +25,7 @@ namespace UCarLink.API.Controllers
             try
             {
                 var intencoes = await _consultaService.GetConsultaIntencoesByFiltros(model);
-                if (!intencoes.Any()) return NotFound("Nenhuma intenção encontrada com os filtros informados!");
+                if (intencoes == null) return NotFound("Nenhuma intenção encontrada com os filtros informados!");
                 return Ok(intencoes);
             }
             catch (System.Exception ex)
@@ -40,7 +40,7 @@ namespace UCarLink.API.Controllers
             try
             {
                 var intencoes = await _consultaService.GetConsultaIntencoesDetalhesByFiltros(model);
-                if (!intencoes.Any()) return NotFound("Nenhuma intenção encontrada com os filtros informados!");
+                if (intencoes == null) return NotFound("Nenhuma intenção encontrada com os filtros informados!");
                 return Ok(intencoes);
             }
             catch (System.Exception ex)

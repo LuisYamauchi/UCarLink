@@ -25,7 +25,7 @@ namespace UCarLink.API.Controllers
             try
             {
                 var tiposPorta = await _tipoPortaService.GetAllTiposPortaAsync();
-                if (!tiposPorta.Any()) return NotFound("Nenhum tipo de Porta encontrado.");
+                if (tiposPorta == null) return NotFound("Nenhum tipo de Porta encontrado.");
                 return Ok(tiposPorta);
             }
             catch (System.Exception ex)

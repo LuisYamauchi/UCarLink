@@ -62,7 +62,7 @@ namespace UCarLink.Persistence.Migrations
                     b.Property<int>("QtdeDiasValidadePadrao")
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("ValorMaxBusca")
+                    b.Property<decimal>("ValorMaxBusca")
                         .HasColumnType("TEXT");
 
                     b.Property<decimal>("ValorMinBusca")
@@ -97,9 +97,6 @@ namespace UCarLink.Persistence.Migrations
                     b.Property<string>("Alarme")
                         .HasColumnType("TEXT");
 
-                    b.Property<int?>("AnoFinal")
-                        .HasColumnType("INTEGER");
-
                     b.Property<int?>("AnoInicial")
                         .HasColumnType("INTEGER");
 
@@ -109,19 +106,19 @@ namespace UCarLink.Persistence.Migrations
                     b.Property<string>("Cambio")
                         .HasColumnType("TEXT");
 
-                    b.Property<int?>("ClienteIdCliente")
+                    b.Property<int>("ClienteIdCliente")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int?>("CombustivelIdCombustivel")
+                    b.Property<int>("CombustivelIdCombustivel")
                         .HasColumnType("INTEGER");
 
                     b.Property<int>("CompraVenda")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int?>("CorVeiculoIdCorVeiculo")
+                    b.Property<int>("CorVeiculoIdCorVeiculo")
                         .HasColumnType("INTEGER");
 
-                    b.Property<DateTime>("DataCadastro")
+                    b.Property<DateTime?>("DataCadastro")
                         .HasColumnType("TEXT");
 
                     b.Property<DateTime?>("DataVencimento")
@@ -130,22 +127,25 @@ namespace UCarLink.Persistence.Migrations
                     b.Property<string>("DirecaoEletrica")
                         .HasColumnType("TEXT");
 
+                    b.Property<decimal>("KmAtual")
+                        .HasColumnType("TEXT");
+
                     b.Property<decimal>("KmFinal")
                         .HasColumnType("TEXT");
 
                     b.Property<decimal>("KmInicial")
                         .HasColumnType("TEXT");
 
-                    b.Property<int?>("ModeloIdModelo")
+                    b.Property<int>("ModeloIdModelo")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Som")
                         .HasColumnType("TEXT");
 
-                    b.Property<int?>("TipoPortaIdTipoPorta")
+                    b.Property<int>("TipoPortaIdTipoPorta")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int?>("TipoVeiculoIdTipoVeiculo")
+                    b.Property<int>("TipoVeiculoIdTipoVeiculo")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("TravasEletricas")
@@ -160,32 +160,16 @@ namespace UCarLink.Persistence.Migrations
                     b.Property<decimal>("ValorVeiculo")
                         .HasColumnType("TEXT");
 
-                    b.Property<int?>("VendedorInclusaoIdVendedor")
+                    b.Property<int>("VendedorInclusaoIdVendedor")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int?>("VendedorNegociacaoIdVendedor")
+                    b.Property<int>("VendedorNegociacaoIdVendedor")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("VidroEletrico")
                         .HasColumnType("TEXT");
 
                     b.HasKey("IdIntencao");
-
-                    b.HasIndex("ClienteIdCliente");
-
-                    b.HasIndex("CombustivelIdCombustivel");
-
-                    b.HasIndex("CorVeiculoIdCorVeiculo");
-
-                    b.HasIndex("ModeloIdModelo");
-
-                    b.HasIndex("TipoPortaIdTipoPorta");
-
-                    b.HasIndex("TipoVeiculoIdTipoVeiculo");
-
-                    b.HasIndex("VendedorInclusaoIdVendedor");
-
-                    b.HasIndex("VendedorNegociacaoIdVendedor");
 
                     b.ToTable("Intencoes");
                 });
@@ -214,15 +198,14 @@ namespace UCarLink.Persistence.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("Descricao")
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("Descricao")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
 
-                    b.Property<int?>("MontadoraIdMontadora")
+                    b.Property<int>("MontadoraIdMontadora")
                         .HasColumnType("INTEGER");
 
                     b.HasKey("IdModelo");
-
-                    b.HasIndex("MontadoraIdMontadora");
 
                     b.ToTable("Modelos");
                 });
@@ -282,7 +265,7 @@ namespace UCarLink.Persistence.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<int?>("LojaIdLoja")
+                    b.Property<int>("LojaIdLoja")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Nome")
@@ -299,78 +282,7 @@ namespace UCarLink.Persistence.Migrations
 
                     b.HasKey("IdVendedor");
 
-                    b.HasIndex("LojaIdLoja");
-
                     b.ToTable("Vendedores");
-                });
-
-            modelBuilder.Entity("UCarLink.Domain.Intencao", b =>
-                {
-                    b.HasOne("UCarLink.Domain.Cliente", "Cliente")
-                        .WithMany()
-                        .HasForeignKey("ClienteIdCliente");
-
-                    b.HasOne("UCarLink.Domain.Combustivel", "Combustivel")
-                        .WithMany()
-                        .HasForeignKey("CombustivelIdCombustivel");
-
-                    b.HasOne("UCarLink.Domain.CorVeiculo", "CorVeiculo")
-                        .WithMany()
-                        .HasForeignKey("CorVeiculoIdCorVeiculo");
-
-                    b.HasOne("UCarLink.Domain.Modelo", "Modelo")
-                        .WithMany()
-                        .HasForeignKey("ModeloIdModelo");
-
-                    b.HasOne("UCarLink.Domain.TipoPorta", "TipoPorta")
-                        .WithMany()
-                        .HasForeignKey("TipoPortaIdTipoPorta");
-
-                    b.HasOne("UCarLink.Domain.TipoVeiculo", "TipoVeiculo")
-                        .WithMany()
-                        .HasForeignKey("TipoVeiculoIdTipoVeiculo");
-
-                    b.HasOne("UCarLink.Domain.Vendedor", "VendedorInclusao")
-                        .WithMany()
-                        .HasForeignKey("VendedorInclusaoIdVendedor");
-
-                    b.HasOne("UCarLink.Domain.Vendedor", "VendedorNegociacao")
-                        .WithMany()
-                        .HasForeignKey("VendedorNegociacaoIdVendedor");
-
-                    b.Navigation("Cliente");
-
-                    b.Navigation("Combustivel");
-
-                    b.Navigation("CorVeiculo");
-
-                    b.Navigation("Modelo");
-
-                    b.Navigation("TipoPorta");
-
-                    b.Navigation("TipoVeiculo");
-
-                    b.Navigation("VendedorInclusao");
-
-                    b.Navigation("VendedorNegociacao");
-                });
-
-            modelBuilder.Entity("UCarLink.Domain.Modelo", b =>
-                {
-                    b.HasOne("UCarLink.Domain.Montadora", "Montadora")
-                        .WithMany()
-                        .HasForeignKey("MontadoraIdMontadora");
-
-                    b.Navigation("Montadora");
-                });
-
-            modelBuilder.Entity("UCarLink.Domain.Vendedor", b =>
-                {
-                    b.HasOne("UCarLink.Domain.Loja", "Loja")
-                        .WithMany()
-                        .HasForeignKey("LojaIdLoja");
-
-                    b.Navigation("Loja");
                 });
 #pragma warning restore 612, 618
         }

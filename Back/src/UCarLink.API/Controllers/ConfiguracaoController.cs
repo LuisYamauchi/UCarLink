@@ -25,7 +25,7 @@ namespace UCarLink.API.Controllers
             try
             {
                 var configuracoes = await _configuracaoService.GetAllConfiguracoesAsync();
-                if (!configuracoes.Any()) return NotFound("Nenhum configuracao encontrado.");
+                if (configuracoes == null) return NotFound("Nenhum configuracao encontrado.");
                 return Ok(configuracoes);
             }
             catch (System.Exception ex)
