@@ -34,13 +34,13 @@ namespace UCarLink.API.Controllers
             }
         }
 
-        [HttpGet("Detalhes")]
-        public async Task<IActionResult> GetConsultaIntencoesDetalhesByFiltros([FromQuery]Consulta model)
+        [HttpPost("Detalhes")]
+        public async Task<IActionResult> GetConsultaIntencoesDetalhesByFiltros(Consulta model)
         {
             try
             {
                 var intencoes = await _consultaService.GetConsultaIntencoesDetalhesByFiltros(model);
-                if (intencoes == null) return NotFound("Nenhuma intenção encontrada com os filtros informados!");
+                //if (intencoes == null) return NotFound("Nenhuma intenção encontrada com os filtros informados!");
                 return Ok(intencoes);
             }
             catch (System.Exception ex)

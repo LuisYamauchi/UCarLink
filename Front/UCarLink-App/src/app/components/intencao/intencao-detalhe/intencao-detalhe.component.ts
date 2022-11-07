@@ -159,7 +159,7 @@ export class IntencaoDetalheComponent implements OnInit {
       compraVenda: ['', [Validators.required]],
       valorInicial: ['', [Validators.required]],
       valorFinal: ['', [Validators.required]],
-      valorVeiculo: ['', [Validators.required]],
+      valorVeiculo: [''],
       dataCadastro: [''],
       dataVencimento: [''],
       modeloIdModelo: ['', [Validators.required]],
@@ -178,6 +178,7 @@ export class IntencaoDetalheComponent implements OnInit {
       direcaoEletrica: [''],
       kmInicial: [''],
       kmFinal: [''],
+      KmAtual: [''],
     });
   }
 

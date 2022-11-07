@@ -20,6 +20,7 @@ namespace UCarLink.Persistence
         public async Task<Intencao[]> GetAllIntencoesAsync()
         {
             IQueryable<Intencao> query = _context.Intencoes;
+            //IQueryable<Intencao> query = _context.Intencoes.Include(x=> x.ModeloIdModelo);
             query = query.AsNoTracking().OrderBy(c => c.DataCadastro);
 
             return await query.ToArrayAsync();

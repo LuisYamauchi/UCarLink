@@ -5,8 +5,11 @@
         <div class="form-group col-sm-4">
           <label>Cliente</label>
           <select class="form-control" formControlName="clienteIdCliente">
-            <option *ngFor="let cliente of clientes" [value]="cliente.idCliente"
-              [attr.selected]="idCliente == cliente.idCliente ? true : null">
+            <option
+              *ngFor="let cliente of clientes"
+              [value]="cliente.idCliente"
+              [attr.selected]="idCliente == cliente.idCliente ? true : null"
+            >
               {{ cliente.nome }}
             </option>
           </select>
@@ -14,57 +17,101 @@
         <div class="form-group col-sm-2">
           <label>Tipo</label>
           <select class="form-control" formControlName="compraVenda">
-            <option *ngFor="let tipoIntencao of tiposIntencao" [value]="tipoIntencao.id"
-              [attr.selected]="idTipoIntencao == tipoIntencao.id ? true : null">
+            <option
+              *ngFor="let tipoIntencao of tiposIntencao"
+              [value]="tipoIntencao.id"
+              [attr.selected]="idTipoIntencao == tipoIntencao.id ? true : null"
+            >
               {{ tipoIntencao.descricao }}
             </option>
           </select>
         </div>
         <div class="form-group col-sm-3">
           <label>Valor De</label>
-          <input type="number" class="form-control" formControlName="valorInicial"
-            placeholder="Insira o valor inicial" />
+          <input
+            type="number"
+            class="form-control"
+            formControlName="valorInicial"
+            placeholder="Insira o valor inicial"
+          />
         </div>
         <div class="form-group col-sm-3">
           <label>Até</label>
-          <input type="number" class="form-control" formControlName="valorFinal" placeholder="Insira o valor final" />
+          <input
+            type="number"
+            class="form-control"
+            formControlName="valorFinal"
+            placeholder="Insira o valor final"
+          />
         </div>
         <div class="form-group col-sm-3">
           <label>Valor do Veículo</label>
-          <input type="number" class="form-control" formControlName="valorVeiculo"
-            placeholder="Insira o valor do veículo" />
+          <input
+            type="number"
+            class="form-control"
+            formControlName="valorVeiculo"
+            placeholder="Insira o valor do veículo"
+          />
         </div>
         <div class="form-group col-sm-3">
           <label>Data Cadastro</label>
-          <input type="datetime" class="form-control" formControlName="dataCadastro" />
+          <input
+            type="datetime"
+            class="form-control"
+            formControlName="dataCadastro"
+          />
         </div>
         <div class="form-group col-sm-3">
           <label>Data Vencimento</label>
-          <input type="datetime" class="form-control" formControlName="dataVencimento" />
+          <input
+            type="datetime"
+            class="form-control"
+            formControlName="dataVencimento"
+          />
         </div>
         <div class="form-group col-sm-3">
           <label>Modelo</label>
           <select class="form-control" formControlName="modeloIdModelo">
-            <option *ngFor="let modelo of modelos" [value]="modelo.idModelo"
-              [attr.selected]="idModelo == modelo.idModelo ? true : null">
+            <option
+              *ngFor="let modelo of modelos"
+              [value]="modelo.idModelo"
+              [attr.selected]="idModelo == modelo.idModelo ? true : null"
+            >
               {{ modelo.descricao }}
             </option>
           </select>
         </div>
         <div class="form-group col-sm-1">
           <label>Ano Inicial</label>
-          <input type="number" class="form-control" formControlName="anoInicial" placeholder="Insira o ano inicial" />
+          <input
+            type="number"
+            class="form-control"
+            formControlName="anoInicial"
+            placeholder="Insira o ano inicial"
+          />
         </div>
         <div class="form-group col-sm-1">
           <label>Final</label>
-          <input type="number" class="form-control" formControlName="anoFinal" placeholder="Insira o ano final" />
+          <input
+            type="number"
+            class="form-control"
+            formControlName="anoFinal"
+            placeholder="Insira o ano final"
+          />
         </div>
         <div class="form-group col-sm-2">
           <label>Tipo Veículo</label>
-          <select class="form-control" formControlName="tipoVeiculoIdTipoVeiculo">
-            <option *ngFor="let tipoVeiculo of tiposVeiculo" [value]="tipoVeiculo.idTipoVeiculo" [attr.selected]="
+          <select
+            class="form-control"
+            formControlName="tipoVeiculoIdTipoVeiculo"
+          >
+            <option
+              *ngFor="let tipoVeiculo of tiposVeiculo"
+              [value]="tipoVeiculo.idTipoVeiculo"
+              [attr.selected]="
                 idTipoVeiculo == tipoVeiculo.idTipoVeiculo ? true : null
-              ">
+              "
+            >
               {{ tipoVeiculo.descricao }}
             </option>
           </select>
@@ -72,19 +119,30 @@
         <div class="form-group col-sm-3">
           <label>Tipo Porta</label>
           <select class="form-control" formControlName="tipoPortaIdTipoPorta">
-            <option *ngFor="let tipoPorta of tiposPorta" [value]="tipoPorta.idTipoPorta" [attr.selected]="
+            <option
+              *ngFor="let tipoPorta of tiposPorta"
+              [value]="tipoPorta.idTipoPorta"
+              [attr.selected]="
                 idTipoPorta == tipoPorta.idTipoPorta ? true : null
-              ">
+              "
+            >
               {{ tipoPorta.descricao }}
             </option>
           </select>
         </div>
         <div class="form-group col-sm-3">
           <label>Combustível</label>
-          <select class="form-control" formControlName="combustivelIdCombustivel">
-            <option *ngFor="let combustivel of combustiveis" [value]="combustivel.idCombustivel" [attr.selected]="
+          <select
+            class="form-control"
+            formControlName="combustivelIdCombustivel"
+          >
+            <option
+              *ngFor="let combustivel of combustiveis"
+              [value]="combustivel.idCombustivel"
+              [attr.selected]="
                 idCombustivel == combustivel.idCombustivel ? true : null
-              ">
+              "
+            >
               {{ combustivel.descricao }}
             </option>
           </select>
@@ -92,8 +150,11 @@
         <div class="form-group col-sm-2">
           <label>Cor</label>
           <select class="form-control" formControlName="corVeiculoIdCorVeiculo">
-            <option *ngFor="let cor of cores" [value]="cor.idCorVeiculo"
-              [attr.selected]="idCorVeiculo == cor.idCorVeiculo ? true : null">
+            <option
+              *ngFor="let cor of cores"
+              [value]="cor.idCorVeiculo"
+              [attr.selected]="idCorVeiculo == cor.idCorVeiculo ? true : null"
+            >
               {{ cor.descricao }}
             </option>
           </select>
@@ -101,60 +162,125 @@
         <div class="form-group col-sm-2">
           <label>Câmbio</label>
           <select class="form-control" formControlName="cambio">
-            <option *ngFor="let cambio of cambios" [value]="cambio.id"
-              [attr.selected]="idCambio == cambio.id ? true : null">
+            <option
+              *ngFor="let cambio of cambios"
+              [value]="cambio.id"
+              [attr.selected]="idCambio == cambio.id ? true : null"
+            >
               {{ cambio.descricao }}
             </option>
           </select>
         </div>
         <div class="form-group col-sm-3">
           <label>KM Inicial</label>
-          <input type="number" class="form-control" formControlName="kmInicial" placeholder="Insira a KM inicial" />
+          <input
+            type="number"
+            class="form-control"
+            formControlName="kmInicial"
+            placeholder="Insira a KM inicial"
+          />
         </div>
         <div class="form-group col-sm-3">
           <label>Final</label>
-          <input type="number" class="form-control" formControlName="kmFinal" placeholder="Insira a KM final" />
+          <input
+            type="number"
+            class="form-control"
+            formControlName="kmFinal"
+            placeholder="Insira a KM final"
+          />
+        </div>
+        <div class="form-group col-sm-3">
+          <label>KM Atual</label>
+          <input
+            type="number"
+            class="form-control"
+            formControlName="KmAtual"
+            placeholder="Insira o KM atual"
+          />
         </div>
         <div class="form-row p-2 col-sm-12">
           <div class="form-group col-sm-3">
             <div class="form-check form-switch">
-              <input class="form-check-input" type="checkbox" id="arCondicionado" [checked]="arCondicionado"
-                (change)="arCondicionado = !arCondicionado" />
-              <label class="form-check-label" for="flexSwitchCheckDefault">Ar Condicionado</label>
+              <input
+                class="form-check-input"
+                type="checkbox"
+                id="arCondicionado"
+                [checked]="arCondicionado"
+                (change)="arCondicionado = !arCondicionado"
+              />
+              <label class="form-check-label" for="flexSwitchCheckDefault"
+                >Ar Condicionado</label
+              >
             </div>
           </div>
           <div class="form-group col-sm-3">
             <div class="form-check form-switch">
-              <input class="form-check-input" type="checkbox" id="vidroEletrico" [checked]="vidroEletrico"
-                (change)="vidroEletrico = !vidroEletrico" />
-              <label class="form-check-label" for="flexSwitchCheckChecked">Vidro Elétrico</label>
+              <input
+                class="form-check-input"
+                type="checkbox"
+                id="vidroEletrico"
+                [checked]="vidroEletrico"
+                (change)="vidroEletrico = !vidroEletrico"
+              />
+              <label class="form-check-label" for="flexSwitchCheckChecked"
+                >Vidro Elétrico</label
+              >
             </div>
           </div>
           <div class="form-group col-sm-3">
             <div class="form-check form-switch">
-              <input class="form-check-input" type="checkbox" id="travasEletricas" [checked]="travasEletricas"
-                (change)="travasEletricas = !travasEletricas" />
-              <label class="form-check-label" for="flexSwitchCheckChecked">Travas Elétricas</label>
+              <input
+                class="form-check-input"
+                type="checkbox"
+                id="travasEletricas"
+                [checked]="travasEletricas"
+                (change)="travasEletricas = !travasEletricas"
+              />
+              <label class="form-check-label" for="flexSwitchCheckChecked"
+                >Travas Elétricas</label
+              >
             </div>
           </div>
           <div class="form-group col-sm-3">
             <div class="form-check form-switch">
-              <input class="form-check-input" type="checkbox" id="alarme" [checked]="alarme"
-                (change)="alarme = !alarme" />
-              <label class="form-check-label" for="flexSwitchCheckChecked">Alarme</label>
+              <input
+                class="form-check-input"
+                type="checkbox"
+                id="alarme"
+                [checked]="alarme"
+                (change)="alarme = !alarme"
+              />
+              <label class="form-check-label" for="flexSwitchCheckChecked"
+                >Alarme</label
+              >
             </div>
           </div>
           <div class="form-group col-sm-3">
             <div class="form-check form-switch">
-              <input class="form-check-input" type="checkbox" id="som" [checked]="som" (change)="som = !som" />
-              <label class="form-check-label" for="flexSwitchCheckChecked">Som Automotivo</label>
+              <input
+                class="form-check-input"
+                type="checkbox"
+                id="som"
+                [checked]="som"
+                (change)="som = !som"
+              />
+              <label class="form-check-label" for="flexSwitchCheckChecked"
+                >Som Automotivo</label
+              >
             </div>
           </div>
           <div class="form-group col-sm-3">
             <div class="form-check form-switch">
-              <input class="form-check-input" type="checkbox" id="direcaoEletrica" [checked]="direcaoEletrica"
-                (change)="direcaoEletrica = !direcaoEletrica" />
-              <label class="form-check-label" for="flexSwitchCheckChecked">Direção Elétrica</label>
+              <input
+                class="form-check-input"
+                type="checkbox"
+                id="direcaoEletrica"
+                [checked]="direcaoEletrica"
+                (change)="direcaoEletrica = !direcaoEletrica"
+              />
+              <label class="form-check-label" for="flexSwitchCheckChecked"
+                >Direção Elétrica</label
+              >
             </div>
           </div>
         </div>
@@ -162,10 +288,17 @@
     </div>
     <div class="card-footer">
       <div class="d-flex">
-        <button class="btn btn-outline-secondary mr-auto border" (click)="resetForm()">
+        <button
+          class="btn btn-outline-secondary mr-auto border"
+          (click)="resetForm()"
+        >
           Cancelar
         </button>
-        <button class="btn btn-success" [disabled]="!form.valid" (click)="salvarIntencao()">
+        <button
+          class="btn btn-success"
+          [disabled]="!form.valid"
+          (click)="salvarIntencao()"
+        >
           Salvar
         </button>
       </div>

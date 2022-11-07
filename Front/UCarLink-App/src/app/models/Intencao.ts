@@ -4,9 +4,9 @@ export interface Intencao {
   compraVenda: number;
   vendedorInclusaoIdVendedor: number;
   vendedorNegociacaoIdVendedor: number;
-  valorInicial: number;
-  valorFinal: number;
-  valorVeiculo: number;
+  valorInicial?: number;
+  valorFinal?: number;
+  valorVeiculo?: number;
   dataCadastro: Date;
   dataVencimento?: Date;
   modeloIdModelo: number;
@@ -23,8 +23,9 @@ export interface Intencao {
   alarme: string;
   som: string;
   direcaoEletrica: string;
-  kmInicial: number;
-  kmFinal: number;
+  kmInicial?: number;
+  kmFinal?: number;
+  KmAtual?: number;
 }
 export interface TipoIntencao {
   id: number;

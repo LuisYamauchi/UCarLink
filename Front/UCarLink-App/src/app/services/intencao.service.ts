@@ -6,6 +6,7 @@ import { Intencao, IntencaoDetalhes } from '@app/models/Intencao';
 
 import { Observable } from 'rxjs';
 import { take } from 'rxjs/operators';
+import { Consulta } from '@app/models/Consulta';
 
 @Injectable()
 export class IntencaoService {
@@ -24,6 +25,11 @@ export class IntencaoService {
   public getIntencoesDetalhes(): Observable<IntencaoDetalhes[]> {
     return this.http.get<IntencaoDetalhes[]>(`${this.baseURL}/detalhes`).pipe(take(1));
   }
+  public getConsultaDetalhes(consulta: Consulta): Observable<IntencaoDetalhes[]> {
+    return this.http.post<IntencaoDetalhes[]>(`${environment.apiURL}api/Consulta/Detalhes`, consulta).pipe(take(1));
+  }
+
+
 
   public saveIntencao(idIntencao: number, Intencoes: Intencao[]): Observable<Intencao[]> {
     return this.http
