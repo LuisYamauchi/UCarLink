@@ -1,0 +1,71 @@
+<div class="card rounded shadow-sm p-3">
+  <div class="d-flex">
+    <div class="flex-fill pr-3">
+      <div class="input-group mb-2">
+        <div class="input-group-prepend">
+          <div class="input-group-text">Filtro:</div>
+        </div>
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Filtar por descrição"
+          [(ngModel)]="filtroLista"
+        />
+      </div>
+    </div>
+    <div>
+      <a class="d-flex btn btn-outline-primary" routerLink="/corVeiculo/detalhe">
+        <i class="fa fa-plus-circle my-1"></i>
+        <b class="ml-1 d-none d-sm-block">Novo</b>
+      </a>
+    </div>
+  </div>
+  <table class="table table-stripped table-rover">
+    <thead class="thead-dark">
+      <tr>
+        <th>#</th>
+        <th>Descrição</th>
+        <th>Opções</th>
+      </tr>
+    </thead>
+    <tbody *ngIf="coresVeiculo && coresVeiculo.length">
+      <tr
+        *ngFor="let corVeiculo of coresVeiculoFiltrados"
+        (click)="detalheCorVeiculo(corVeiculo.idCorVeiculo)"
+        style="cursor: pointer"
+      >
+        <td>{{ corVeiculo.idCorVeiculo }}</td>
+        <td>{{ corVeiculo.descricao }}</td>
+        <td>
+          <button
+            type="button"
+            class="btn btn-danger btn-lg"
+            tooltip="Deletar"
+            (click)="openModal($event, template, corVeiculo.idCorVeiculo)"
+          >
+            <i class="fa fa-trash"></i>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+    <tfoot *ngIf="!coresVeiculo.length">
+      <tr>
+        <td colspan="8" class="text-center">
+          <h4>Nenhum cor encontrada</h4>
+        </td>
+      </tr>
+    </tfoot>
+  </table>
+</div>
+
+<ng-template #template>
+  <div class="modal-body text-center">
+    <p>Tem certeza que quer excluir essa cor?</p>
+    <button type="button" class="btn btn-default" (click)="confirm()">
+      Sim
+    </button>
+    <button type="button" class="btn btn-primary" (click)="decline()">
+      Não
+    </button>
+  </div>
+</ng-template>

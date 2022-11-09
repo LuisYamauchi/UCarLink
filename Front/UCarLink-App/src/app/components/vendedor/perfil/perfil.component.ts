@@ -1,4 +1,3 @@
-import { PaginatedResult } from './../../../models/Pagination';
 import { LojaService } from './../../../services/loja.service';
 import { Loja } from './../../../models/Loja';
 import { NgxSpinnerService } from 'ngx-spinner';

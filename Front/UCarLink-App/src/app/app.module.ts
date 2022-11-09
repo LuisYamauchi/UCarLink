@@ -51,19 +51,44 @@ import { TipoVeiculoService } from './services/tipo-veiculo.service';
 import { TipoPortaService } from './services/tipo-porta.service';
 import { CombustivelService } from './services/combustivel.service';
 import { CorVeiculoService } from './services/cor-veiculo.service';
+import { CombustivelDetalheComponent } from './components/combustivel/combustivel-detalhe/combustivel-detalhe.component';
+import { CombustivelListaComponent } from './components/combustivel/combustivel-lista/combustivel-lista.component';
+import { CorVeiculoDetalheComponent } from './components/cor-veiculo/cor-veiculo-detalhe/cor-veiculo-detalhe.component';
+import { CorVeiculoListaComponent } from './components/cor-veiculo/cor-veiculo-lista/cor-veiculo-lista.component';
+import { LojaDetalheComponent } from './components/loja/loja-detalhe/loja-detalhe.component';
+import { LojaListaComponent } from './components/loja/loja-lista/loja-lista.component';
+import { ModeloDetalheComponent } from './components/modelo/modelo-detalhe/modelo-detalhe.component';
+import { ModeloListaComponent } from './components/modelo/modelo-lista/modelo-lista.component';
+import { MontadoraDetalheComponent } from './components/montadora/montadora-detalhe/montadora-detalhe.component';
+import { MontadoraListaComponent } from './components/montadora/montadora-lista/montadora-lista.component';
+import { MontadoraService } from './services/montadora.service';
+import { TipoPortaDetalheComponent } from './components/tipo-porta/tipo-porta-detalhe/tipo-porta-detalhe.component';
+import { TipoPortaListaComponent } from './components/tipo-porta/tipo-porta-lista/tipo-porta-lista.component';
+import { TipoVeiculoListaComponent } from './components/tipo-veiculo/tipo-veiculo-lista/tipo-veiculo-lista.component';
+import { TipoVeiculoDetalheComponent } from './components/tipo-veiculo/tipo-veiculo-detalhe/tipo-veiculo-detalhe.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ClientesComponent,
+    ClienteDetalheComponent,
+    ClienteListaComponent,
     CombustivelComponent,
+    CombustivelDetalheComponent,
+    CombustivelListaComponent,
     ConfiguracaoComponent,
     CorVeiculoComponent,
+    CorVeiculoDetalheComponent,
+    CorVeiculoListaComponent,
     DashboardComponent,
     IntencaoComponent,
     LojaComponent,
     ModeloComponent,
+    ModeloDetalheComponent,
+    ModeloListaComponent,
     MontadoraComponent,
+    MontadoraDetalheComponent,
+    MontadoraListaComponent,
     TipoPortaComponent,
     TipoVeiculoComponent,
     VendedorComponent,
@@ -75,13 +100,17 @@ import { CorVeiculoService } from './services/cor-veiculo.service';
     CorVeiculoComponent,
     IntencaoComponent,
     LojaComponent,
+    LojaDetalheComponent,
+    LojaListaComponent,
     ModeloComponent,
     MontadoraComponent,
     TipoPortaComponent,
+    TipoPortaDetalheComponent,
+    TipoPortaListaComponent,
     TipoVeiculoComponent,
+    TipoVeiculoDetalheComponent,
+    TipoVeiculoListaComponent,
     LoginComponent,
-    ClienteDetalheComponent,
-    ClienteListaComponent,
     RegistrationComponent,
     HomeComponent,
     PerfilComponent,
@@ -116,6 +145,7 @@ import { CorVeiculoService } from './services/cor-veiculo.service';
     IntencaoService,
     LojaService,
     ModeloService,
+    MontadoraService,
     TipoVeiculoService,
     TipoPortaService,
     CombustivelService,

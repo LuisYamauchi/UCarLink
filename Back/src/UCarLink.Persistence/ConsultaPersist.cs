@@ -40,6 +40,7 @@ namespace UCarLink.Persistence
             IQueryable<Intencao> query = _context.Intencoes;
             query = query.AsNoTracking().WhereIf(model.IdLoja > 0, l => idVendedoresDaLoja.Contains(l.VendedorInclusaoIdVendedor))
                                          //Compra = 0, Venda = 1
+                                        .WhereIf(model.CompraVenda.HasValue, l => l.CompraVenda == model.CompraVenda.Value)
                                         .WhereIf(model.ValorBuscaInicial > 0, l => l.ValorVeiculo >= model.ValorBuscaInicial 
                                                                                 && l.ValorVeiculo <= model.ValorBuscaFinal)                                     
                                         .WhereIf(model.DataCadastro != null, l => l.DataCadastro == model.DataCadastro)

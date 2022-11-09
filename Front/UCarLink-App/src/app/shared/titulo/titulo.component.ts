@@ -24,6 +24,20 @@ export class TituloComponent implements OnInit {
   obterRota(): string{
     if (this.titulo.toLocaleLowerCase() === 'intenções')
     return 'intencao';
+    if (this.titulo.toLocaleLowerCase() === 'combustíveis')
+    return 'combustivel';
+    if (this.titulo.toLocaleLowerCase() === 'cores')
+    return 'corVeiculo';
+    if (this.titulo.toLocaleLowerCase() === 'lojas')
+    return 'loja';
+    if (this.titulo.toLocaleLowerCase() === 'modelos')
+    return 'modelo';
+    if (this.titulo.toLocaleLowerCase() === 'marcas')
+    return 'montadora';
+    if (this.titulo.toLocaleLowerCase() === 'tipos de portas')
+    return 'tipoPorta';
+    if (this.titulo.toLocaleLowerCase() === 'tipos de veículos')
+    return 'tipoVeiculo';
     else return this.titulo.toLocaleLowerCase();
   }
 }

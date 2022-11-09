@@ -8,10 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavComponent implements OnInit {
   isCollapsed = true;
+  nomeVendedor!: string;
 
   constructor(private router: Router) { }
 
   ngOnInit(): void {
+
+    var dados = localStorage.getItem('vendedor');
+
+    const vendedorLogado = dados && JSON.parse(dados);
+
+    this.nomeVendedor = vendedorLogado.nome;
   }
   showMenu(): boolean {
     return this.router.url != '/user/login' && this.router.url != '/user/registration';

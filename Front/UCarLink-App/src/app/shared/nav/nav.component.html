@@ -1,3 +1,4 @@
+
 <nav
   class="navbar navbar-expand-lg navbar-light bg-white shadow-sm"
   *ngIf="showMenu()"
@@ -44,21 +45,19 @@
           >
             <a class="dropdown-item" routerLink="clientes/lista"> Clientes </a>
             <div role="separator" class="divider"></div>
-            <a class="dropdown-item" routerLink="combustivel"> Combustiveis </a>
+            <a class="dropdown-item" routerLink="combustivel/lista"> Combustíveis </a>
             <div role="separator" class="divider"></div>
-            <a class="dropdown-item" routerLink="corVeiculo"> Cores dos Veículos </a>
+            <a class="dropdown-item" routerLink="corVeiculo/lista"> Cores dos Veículos </a>
             <div role="separator" class="divider"></div>
-            <a class="dropdown-item" routerLink="loja">Lojas </a>
+            <a class="dropdown-item" routerLink="loja/lista">Lojas </a>
             <div role="separator" class="divider"></div>
-            <a class="dropdown-item" routerLink="modelo"> Modelos </a>
+            <a class="dropdown-item" routerLink="modelo/lista"> Modelos </a>
             <div role="separator" class="divider"></div>
-            <a class="dropdown-item" routerLink="montadora"> Marcas </a>
+            <a class="dropdown-item" routerLink="montadora/lista"> Marcas </a>
             <div role="separator" class="divider"></div>
-            <a class="dropdown-item" routerLink="tipoPorta"> Tipos de Portas </a>
+            <a class="dropdown-item" routerLink="tipoPorta/lista"> Tipos de Portas </a>
             <div role="separator" class="divider"></div>
-            <a class="dropdown-item" routerLink="tipoVeiculo"> Tipos de Veículos </a>
-            <div role="separator" class="divider"></div>
-            <a class="dropdown-item" routerLink="configuracao"> Parâmetros </a>
+            <a class="dropdown-item" routerLink="tipoVeiculo/lista"> Tipos de Veículos </a>
           </div>
         </li>
         <!-- <li class="nav-item" routerLinkActive="active">
@@ -84,7 +83,7 @@
             aria-haspopup="true"
             aria-expanded="false"
           >
-            Luis Yamauchi
+            {{this.nomeVendedor}}
           </a>
           <div
             *dropdownMenu
