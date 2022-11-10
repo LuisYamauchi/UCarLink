@@ -3,25 +3,13 @@
     <div class="d-flex">
       <div class="flex-fill pr-3">
         <div class="input-group mb-2">
-          <!-- <div class="input-group-prepend">
-          <div class="input-group-text">Filtro:</div>
-        </div>
-        <input
-          type="text"
-          class="form-control"
-          placeholder="Filtar por cliente, vendedor, modelo, cor, tipo veículo, tipo porta, combustível e cor"
-          [(ngModel)]="filtroLista"
-        /> -->
           <h2>Filtros</h2>
           <div class="p-3">
             <div class="form-row">
               <div class="form-group col-sm-2">
                 <label>Tipo</label>
                 <select class="form-control" formControlName="compraVenda">
-                  <option
-                    *ngFor="let tipoIntencao of tiposIntencao"
-                    [value]="tipoIntencao.id"
-                  >
+                  <option *ngFor="let tipoIntencao of tiposIntencao" [value]="tipoIntencao.id">
                     {{ tipoIntencao.descricao }}
                   </option>
                 </select>
@@ -36,37 +24,18 @@
               </div>
               <div class="form-group col-sm-3">
                 <label>Valor De</label>
-                <input
-                  type="number"
-                  class="form-control"
-                  formControlName="valorBuscaInicial"
-                  placeholder="Insira o valor inicial"
-                />
+                <input type="number" class="form-control" formControlName="valorBuscaInicial"
+                  placeholder="Insira o valor inicial" />
               </div>
               <div class="form-group col-sm-3">
                 <label>Até</label>
-                <input
-                  type="number"
-                  class="form-control"
-                  formControlName="valorBuscaFinal"
-                  placeholder="Insira o valor final"
-                />
+                <input type="number" class="form-control" formControlName="valorBuscaFinal"
+                  placeholder="Insira o valor final" />
               </div>
-              <!-- <div class="form-group col-sm-3">
-              <label>Data Cadastro</label>
-              <input type="datetime" class="form-control" formControlName="dataCadastro" />
-            </div>
-            <div class="form-group col-sm-3">
-              <label>Data Vencimento</label>
-              <input type="datetime" class="form-control" formControlName="dataVencimento" />
-            </div> -->
               <div class="form-group col-sm-3">
                 <label>Modelo</label>
                 <select class="form-control" formControlName="idModelo">
-                  <option
-                    *ngFor="let modelo of modelos"
-                    [value]="modelo.idModelo"
-                  >
+                  <option *ngFor="let modelo of modelos" [value]="modelo.idModelo">
                     {{ modelo.descricao }}
                   </option>
                 </select>
@@ -81,29 +50,18 @@
               </div>
               <div class="form-group col-sm-1">
                 <label>Ano Inicial</label>
-                <input
-                  type="number"
-                  class="form-control"
-                  formControlName="anoBuscaInicial"
-                  placeholder="Insira o ano inicial"
-                />
+                <input type="number" class="form-control" formControlName="anoBuscaInicial"
+                  placeholder="Insira o ano inicial" />
               </div>
               <div class="form-group col-sm-1">
                 <label>Final</label>
-                <input
-                  type="number"
-                  class="form-control"
-                  formControlName="anoBuscaFim"
-                  placeholder="Insira o ano final"
-                />
+                <input type="number" class="form-control" formControlName="anoBuscaFim"
+                  placeholder="Insira o ano final" />
               </div>
               <div class="form-group col-sm-2">
                 <label>Tipo Veículo</label>
                 <select class="form-control" formControlName="idTipoVeiculo">
-                  <option
-                    *ngFor="let tipoVeiculo of tiposVeiculo"
-                    [value]="tipoVeiculo.idTipoVeiculo"
-                  >
+                  <option *ngFor="let tipoVeiculo of tiposVeiculo" [value]="tipoVeiculo.idTipoVeiculo">
                     {{ tipoVeiculo.descricao }}
                   </option>
                 </select>
@@ -111,10 +69,7 @@
               <div class="form-group col-sm-3">
                 <label>Tipo Porta</label>
                 <select class="form-control" formControlName="idTipoPorta">
-                  <option
-                    *ngFor="let tipoPorta of tiposPorta"
-                    [value]="tipoPorta.idTipoPorta"
-                  >
+                  <option *ngFor="let tipoPorta of tiposPorta" [value]="tipoPorta.idTipoPorta">
                     {{ tipoPorta.descricao }}
                   </option>
                 </select>
@@ -122,10 +77,7 @@
               <div class="form-group col-sm-3">
                 <label>Combustível</label>
                 <select class="form-control" formControlName="idCombustivel">
-                  <option
-                    *ngFor="let combustivel of combustiveis"
-                    [value]="combustivel.idCombustivel"
-                  >
+                  <option *ngFor="let combustivel of combustiveis" [value]="combustivel.idCombustivel">
                     {{ combustivel.descricao }}
                   </option>
                 </select>
@@ -140,200 +92,96 @@
               </div>
               <div class="form-group col-sm-3">
                 <label>KM Inicial</label>
-                <input
-                  type="number"
-                  class="form-control"
-                  formControlName="kmBuscaInicial"
-                  placeholder="Insira a KM inicial"
-                />
+                <input type="number" class="form-control" formControlName="kmBuscaInicial"
+                  placeholder="Insira a KM inicial" />
               </div>
               <div class="form-group col-sm-3">
                 <label>Final</label>
-                <input
-                  type="number"
-                  class="form-control"
-                  formControlName="kmBuscaFinal"
-                  placeholder="Insira a KM final"
-                />
+                <input type="number" class="form-control" formControlName="kmBuscaFinal"
+                  placeholder="Insira a KM final" />
               </div>
-
               <div class="form-row p-2 col-sm-12">
                 <div class="form-group col-sm-3">
                   <div class="form-check form-switch">
-                    <input
-                      class="form-check-input"
-                      type="checkbox"
-                      id="arCondicionado"
-                      [checked]="arCondicionado"
-                      (change)="arCondicionado = !arCondicionado"
-                    />
-                    <label class="form-check-label" for="flexSwitchCheckDefault"
-                      >Com Ar Condicionado</label
-                    >
-                  </div>
-                </div>
-
-                <div class="form-group col-sm-3">
-                  <div class="form-check form-switch">
-                    <input
-                      class="form-check-input"
-                      type="checkbox"
-                      id="semArCondicionado"
-                      [checked]="semArCondicionado"
-                      (change)="semArCondicionado = !semArCondicionado"
-                    />
-                    <label class="form-check-label" for="flexSwitchCheckDefault"
-                      >Sem Ar Condicionado</label
-                    >
-                  </div>
-                </div>
-
-                <div class="form-group col-sm-3">
-                  <div class="form-check form-switch">
-                    <input
-                      class="form-check-input"
-                      type="checkbox"
-                      id="vidroEletrico"
-                      [checked]="vidroEletrico"
-                      (change)="vidroEletrico = !vidroEletrico"
-                    />
-                    <label class="form-check-label" for="flexSwitchCheckChecked"
-                      >Com Vidro Elétrico</label
-                    >
-                  </div>
-                </div>
-
-                <div class="form-group col-sm-3">
-                  <div class="form-check form-switch">
-                    <input
-                      class="form-check-input"
-                      type="checkbox"
-                      id="semVidroEletrico"
-                      [checked]="semVidroEletrico"
-                      (change)="semVidroEletrico = !semVidroEletrico"
-                    />
-                    <label class="form-check-label" for="flexSwitchCheckChecked"
-                      >Sem Vidro Elétrico</label
-                    >
-                  </div>
-                </div>
-
-                <div class="form-group col-sm-3">
-                  <div class="form-check form-switch">
-                    <input
-                      class="form-check-input"
-                      type="checkbox"
-                      id="travasEletricas"
-                      [checked]="travasEletricas"
-                      (change)="travasEletricas = !travasEletricas"
-                    />
-                    <label class="form-check-label" for="flexSwitchCheckChecked"
-                      >Com Travas Elétricas</label
-                    >
-                  </div>
-                </div>
-
-                <div class="form-group col-sm-3">
-                  <div class="form-check form-switch">
-                    <input
-                      class="form-check-input"
-                      type="checkbox"
-                      id="semTravasEletricas"
-                      [checked]="semTravasEletricas"
-                      (change)="semTravasEletricas = !semTravasEletricas"
-                    />
-                    <label class="form-check-label" for="flexSwitchCheckChecked"
-                      >Sem Travas Elétricas</label
-                    >
-                  </div>
-                </div>
-
-                <div class="form-group col-sm-3">
-                  <div class="form-check form-switch">
-                    <input
-                      class="form-check-input"
-                      type="checkbox"
-                      id="alarme"
-                      [checked]="alarme"
-                      (change)="alarme = !alarme"
-                    />
-                    <label class="form-check-label" for="flexSwitchCheckChecked"
-                      >Com Alarme</label
-                    >
-                  </div>
-                </div>
-
-                <div class="form-group col-sm-3">
-                  <div class="form-check form-switch">
-                    <input
-                      class="form-check-input"
-                      type="checkbox"
-                      id="semAlarme"
-                      [checked]="semAlarme"
-                      (change)="semAlarme = !semAlarme"
-                    />
-                    <label class="form-check-label" for="flexSwitchCheckChecked"
-                      >Sem Alarme</label
-                    >
-                  </div>
-                </div>
-
-                <div class="form-group col-sm-3">
-                  <div class="form-check form-switch">
-                    <input
-                      class="form-check-input"
-                      type="checkbox"
-                      id="som"
-                      [checked]="som"
-                      (change)="som = !som"
-                    />
-                    <label class="form-check-label" for="flexSwitchCheckChecked"
-                      >Com Som Automotivo</label
-                    >
-                  </div>
-                </div>
-
-                <div class="form-group col-sm-3">
-                  <div class="form-check form-switch">
-                    <input
-                      class="form-check-input"
-                      type="checkbox"
-                      id="semSom"
-                      [checked]="semSom"
-                      (change)="semSom = !semSom"
-                    />
-                    <label class="form-check-label" for="flexSwitchCheckChecked"
-                      >Sem Som Automotivo</label
-                    >
-                  </div>
-                </div>
-
-                <div class="form-group col-sm-3">
-                  <div class="form-check form-switch">
-                    <input
-                      class="form-check-input"
-                      type="checkbox"
-                      id="direcaoEletrica"
-                      [checked]="direcaoEletrica"
-                      (change)="direcaoEletrica = !direcaoEletrica"
-                    />
-                    <label class="form-check-label" for="flexSwitchCheckChecked"
-                      >Com Direção Elétrica</label
-                    >
+                    <input class="form-check-input" type="checkbox" id="arCondicionado" [checked]="arCondicionado"
+                      (change)="arCondicionado = !arCondicionado" />
+                    <label class="form-check-label" for="flexSwitchCheckDefault">Com Ar Condicionado</label>
                   </div>
                 </div>
                 <div class="form-group col-sm-3">
                   <div class="form-check form-switch">
-                    <input
-                      class="form-check-input"
-                      type="checkbox"
-                      id="semDirecaoEletrica"
-                      [checked]="semDirecaoEletrica"
-                      (change)="semDirecaoEletrica = !semDirecaoEletrica"
-                    />
-                    <label class="form-check-label" for="flexSwitchCheckChecked"
-                      >Sem Direção Elétrica</label
-                    >
+                    <input class="form-check-input" type="checkbox" id="semArCondicionado" [checked]="semArCondicionado"
+                      (change)="semArCondicionado = !semArCondicionado" />
+                    <label class="form-check-label" for="flexSwitchCheckDefault">Sem Ar Condicionado</label>
+                  </div>
+                </div>
+                <div class="form-group col-sm-3">
+                  <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" id="vidroEletrico" [checked]="vidroEletrico"
+                      (change)="vidroEletrico = !vidroEletrico" />
+                    <label class="form-check-label" for="flexSwitchCheckChecked">Com Vidro Elétrico</label>
+                  </div>
+                </div>
+                <div class="form-group col-sm-3">
+                  <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" id="semVidroEletrico" [checked]="semVidroEletrico"
+                      (change)="semVidroEletrico = !semVidroEletrico" />
+                    <label class="form-check-label" for="flexSwitchCheckChecked">Sem Vidro Elétrico</label>
+                  </div>
+                </div>
+                <div class="form-group col-sm-3">
+                  <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" id="travasEletricas" [checked]="travasEletricas"
+                      (change)="travasEletricas = !travasEletricas" />
+                    <label class="form-check-label" for="flexSwitchCheckChecked">Com Travas Elétricas</label>
+                  </div>
+                </div>
+                <div class="form-group col-sm-3">
+                  <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" id="semTravasEletricas"
+                      [checked]="semTravasEletricas" (change)="semTravasEletricas = !semTravasEletricas" />
+                    <label class="form-check-label" for="flexSwitchCheckChecked">Sem Travas Elétricas</label>
+                  </div>
+                </div>
+                <div class="form-group col-sm-3">
+                  <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" id="alarme" [checked]="alarme"
+                      (change)="alarme = !alarme" />
+                    <label class="form-check-label" for="flexSwitchCheckChecked">Com Alarme</label>
+                  </div>
+                </div>
+                <div class="form-group col-sm-3">
+                  <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" id="semAlarme" [checked]="semAlarme"
+                      (change)="semAlarme = !semAlarme" />
+                    <label class="form-check-label" for="flexSwitchCheckChecked">Sem Alarme</label>
+                  </div>
+                </div>
+                <div class="form-group col-sm-3">
+                  <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" id="som" [checked]="som" (change)="som = !som" />
+                    <label class="form-check-label" for="flexSwitchCheckChecked">Com Som Automotivo</label>
+                  </div>
+                </div>
+                <div class="form-group col-sm-3">
+                  <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" id="semSom" [checked]="semSom"
+                      (change)="semSom = !semSom" />
+                    <label class="form-check-label" for="flexSwitchCheckChecked">Sem Som Automotivo</label>
+                  </div>
+                </div>
+                <div class="form-group col-sm-3">
+                  <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" id="direcaoEletrica" [checked]="direcaoEletrica"
+                      (change)="direcaoEletrica = !direcaoEletrica" />
+                    <label class="form-check-label" for="flexSwitchCheckChecked">Com Direção Elétrica</label>
+                  </div>
+                </div>
+                <div class="form-group col-sm-3">
+                  <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" id="semDirecaoEletrica"
+                      [checked]="semDirecaoEletrica" (change)="semDirecaoEletrica = !semDirecaoEletrica" />
+                    <label class="form-check-label" for="flexSwitchCheckChecked">Sem Direção Elétrica</label>
                   </div>
                 </div>
               </div>
@@ -342,26 +190,17 @@
         </div>
       </div>
       <div>
-        <button
-          class="btn btn-info"
-          [disabled]="!form.valid"
-          (click)="getintencoes()"
-        >
+        <button class="btn btn-outline-secondary mr-auto border" [disabled]="!form.valid" (click)="getintencoes()">
           Filtrar
         </button>
       </div>
-
       <div>
-        <button class="btn btn-clear-wrapper" (click)="resetForm()">
+        <button class="btn btn-outline-secondary mr-auto border" (click)="resetForm()">
           Limpar
         </button>
       </div>
-
       <div>
-        <a
-          class="d-flex btn btn-outline-primary"
-          routerLink="/intencao/detalhe"
-        >
+        <a class="d-flex btn btn-outline-primary" routerLink="/intencao/detalhe">
           <i class="fa fa-plus-circle my-1"></i>
           <b class="ml-1 d-none d-sm-block">Novo</b>
         </a>
@@ -381,10 +220,6 @@
         <th class="d-none d-md-table-cell">Tipo P.</th>
         <th class="d-none d-md-table-cell">Com.</th>
         <th class="d-none d-md-table-cell">Cor</th>
-        <!-- <th class="d-none d-md-table-cell">Ven.</th>
-        <th class="d-none d-md-table-cell">Ano I.</th>
-        <th class="d-none d-md-table-cell">Ano F.</th>
-        <th class="d-none d-md-table-cell">Cambio</th> -->
         <th class="d-none d-md-table-cell">Ar</th>
         <th class="d-none d-md-table-cell">Vidro</th>
         <th class="d-none d-md-table-cell">Trava</th>
@@ -397,11 +232,8 @@
       </tr>
     </thead>
     <tbody *ngIf="intencoes && intencoes.length">
-      <tr
-        *ngFor="let intencao of intencoesFiltradas"
-        (click)="detalheIntencao(intencao.idIntencao)"
-        style="cursor: pointer"
-      >
+      <tr *ngFor="let intencao of intencoesFiltradas" (click)="detalheIntencao(intencao.idIntencao)"
+        style="cursor: pointer">
         <td>{{ intencao.idIntencao }}</td>
         <td class="d-none d-md-table-cell">{{ intencao.clienteNome }}</td>
         <td class="d-none d-md-table-cell">
@@ -422,10 +254,6 @@
         <td class="d-none d-md-table-cell">
           {{ intencao.corVeiculoDescricao }}
         </td>
-        <!-- <td class="d-none d-md-table-cell">{{ intencao.dataVencimento }}</td>
-        <td class="d-none d-md-table-cell">{{ intencao.anoInicial }}</td>
-        <td class="d-none d-md-table-cell">{{ intencao.anoFinal }}</td>
-        <td class="d-none d-md-table-cell">{{ intencao.cambio }}</td> -->
         <td class="d-none d-md-table-cell">{{ intencao.arCondicionado }}</td>
         <td class="d-none d-md-table-cell">{{ intencao.vidroEletrico }}</td>
         <td class="d-none d-md-table-cell">{{ intencao.travasEletricas }}</td>
@@ -435,12 +263,8 @@
         <td class="d-none d-md-table-cell">{{ intencao.kmInicial }}</td>
         <td class="d-none d-md-table-cell">{{ intencao.kmFinal }}</td>
         <td>
-          <button
-            type="button"
-            class="btn btn-danger btn-lg"
-            tooltip="Deletar"
-            (click)="openModal($event, template, intencao.idIntencao)"
-          >
+          <button type="button" class="btn btn-danger btn-lg" tooltip="Deletar"
+            (click)="openModal($event, template, intencao.idIntencao)">
             <i class="fa fa-trash"></i>
           </button>
         </td>
@@ -455,7 +279,6 @@
     </tfoot>
   </table>
 </div>
-
 <ng-template #template>
   <div class="modal-body text-center">
     <p>Tem certeza que quer excluir essa intenção?</p>
